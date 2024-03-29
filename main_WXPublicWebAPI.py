@@ -73,7 +73,7 @@ def insert_tosend_table(name_of_acc, title, content, url):
 
             # 创建插入SQL语句
             tosend_content = f"{name_of_acc}新发公众号推文： {title}\\n{url}"
-            query = """insert into to_send_info (where_to_send,has_send,info_type,info_content,info_dwh_reletive_file_path) 
+            query = """insert into to_send_info (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
             values ('微信#01情报接受群','no','文字', %s, '')"""
             # 执行SQL语句
             cursor.execute(query, (tosend_content,))

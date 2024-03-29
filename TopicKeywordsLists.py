@@ -18,7 +18,7 @@ xiaomi_car_keywords = [
 ]
 
 # Topic = 低空经济
-sorted_integrated_low_altitude_economy_keywords = [
+low_altitude_economy_keywords = [
     {'keyword': '低空物流', 'weight': 10},
     {'keyword': '低空经济', 'weight': 10},
     {'keyword': 'eVTOL', 'weight': 10},
@@ -48,11 +48,11 @@ commercial_space_keywords = [
     {'keyword': '银河航天', 'weight': 8},
     {'keyword': '银河互联网', 'weight': 8},
     {'keyword': 'Galactic Network', 'weight': 8},
-    {'keyword': '蓝箭', 'weight': 8},
+    {'keyword': '蓝箭', 'weight': 10},
     {'keyword': 'LandSpace', 'weight': 8},
-    {'keyword': '星际荣耀', 'weight': 8},
+    {'keyword': '星际荣耀', 'weight': 10},
     {'keyword': 'iSpace', 'weight': 8},
-    {'keyword': '零壹', 'weight': 8},
+    {'keyword': '零壹', 'weight': 10},
     {'keyword': 'OneSpace', 'weight': 8},
     {'keyword': '中科微星', 'weight': 7},
     {'keyword': '天仪研究院', 'weight': 7},

@@ -39,4 +39,65 @@ def newInsertTopic(Topic_name, Topic_keywords):
             cursor.close()
             connection.close()
 
-newInsertTopic('商业航天',TopicKeywordsLists.commercial_space_keywords)
+
+
+def UpdateTopic(Topic_name, Topic_keywords):
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            # 查询数据库中是否存在相同的title或link
+            query = """SELECT * FROM topickeywords WHERE topic = %s"""
+            cursor.execute(query, (Topic_name,))
+            rows = cursor.fetchall()
+            if len(rows) > 0:
+                query = """DELETE FROM topickeywords WHERE topic = %s"""
+                cursor.execute(query, (Topic_name,))
+        connection.commit()
+
+        newInsertTopic(Topic_name, Topic_keywords)
+
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {query}")
+        return []  # 发生错误时返回空
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+
+def UpdateTopic(Topic_name, Topic_keywords):
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            # 查询数据库中是否存在相同的title或link
+            query = """SELECT * FROM topickeywords WHERE topic = %s"""
+            cursor.execute(query, (Topic_name,))
+            rows = cursor.fetchall()
+            if len(rows) > 0:
+                query = """DELETE FROM topickeywords WHERE topic = %s"""
+                cursor.execute(query, (Topic_name,))
+        connection.commit()
+
+        newInsertTopic(Topic_name, Topic_keywords)
+
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {query}")
+        return []  # 发生错误时返回空
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+
+UpdateTopic('商业航天',TopicKeywordsLists.commercial_space_keywords)
+UpdateTopic('小米汽车',TopicKeywordsLists.xiaomi_car_keywords)
+UpdateTopic('低空经济', TopicKeywordsLists.low_altitude_economy_keywords)
+UpdateTopic('通用价值点',TopicKeywordsLists.common_value_keywords)

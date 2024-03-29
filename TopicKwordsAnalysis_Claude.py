@@ -15,7 +15,7 @@ def construct_topic_keywords(topic):
         connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
         if connection.is_connected():
             cursor = connection.cursor()
-            # 查询数据库中是否存在相同的title或link
+
             query = """SELECT * FROM topickeywords WHERE topic = %s"""
             cursor.execute(query, (topic,))
             rows = cursor.fetchall()

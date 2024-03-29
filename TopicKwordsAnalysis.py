@@ -15,7 +15,7 @@ def construct_topic_keywords(topic):
         connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
         if connection.is_connected():
             cursor = connection.cursor()
-            # 查询数据库中是否存在相同的title或link
+
             query = """SELECT * FROM topickeywords WHERE topic = %s"""
             cursor.execute(query, (topic,))
             rows = cursor.fetchall()
@@ -126,9 +126,9 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
         matched_keyword_list = []
         matched_keyword_list, match_score, match_condition_dict = analyze_one_article(temp_info_content, Topic_keywords_dict_list, Topic_name)
 
-        print(temp_info_id)
-        print(match_score)
-        print(match_condition_dict)
+
+        print(Topic_name + "分析进度：" + str(temp_info_id)) if temp_info_id % 100 == 0 else None
+        print(match_condition_dict) if len(match_condition_dict) > 0 else None
 
 
         if('topic' in temp_info_analysis_status_dict.keys()):
@@ -202,7 +202,8 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
 # match_score = topic_key.split('##')[1]
 # print(match_score)
 
-analyze_recent_articles('量化')
-analyze_recent_articles('小米汽车')
-analyze_recent_articles('低空经济')
-analyze_recent_articles('商业航天')
+if __name__ == '__main__':
+   analyze_recent_articles('量化')
+   analyze_recent_articles('小米汽车')
+
+

@@ -1,19 +1,3 @@
-# -*- coding = utf-8 -*-
-# @Time: 2024/3/20 21:05
-# @Author: Chris
-# @File: MaintainTopicKeywords.py
-# @Software: PyCharm
-
-import mysql.connector
-from mysql.connector import Error
-
-
-db_host= '114.55.128.212'
-db_databasename= 'fetchtheworld'
-db_user= 'chris'
-db_password= '19871127ldld'
-
-
 # # 关键词列表,每个元素是一个字典,包含关键词和对应权重
 # quantitative_trading_keywords = [
 # {'keyword': '量化', 'weight': 10},
@@ -22,17 +6,19 @@ db_password= '19871127ldld'
 # {'keyword': '算法交易', 'weight': 10}
 # ]
 
-# xiaomi_car_keywords = [
-#     {'keyword': '小米汽车', 'weight': 10},
-#     {'keyword': 'SU7', 'weight': 10},
-#     {'keyword': '小米首款车型', 'weight': 10},
-#     {'keyword': '发布会', 'weight': 9},
-#     {'keyword': '定价', 'weight': 9},
-#     {'keyword': '雷军', 'weight': 9},
-#     {'keyword': 'V8S超级电机', 'weight': 8}
-# ]
+# Topic = 小米汽车
+xiaomi_car_keywords = [
+    {'keyword': '小米汽车', 'weight': 10},
+    {'keyword': 'SU7', 'weight': 10},
+    {'keyword': '小米首款车型', 'weight': 10},
+    {'keyword': '发布会', 'weight': 9},
+    {'keyword': '定价', 'weight': 9},
+    {'keyword': '雷军', 'weight': 9},
+    {'keyword': 'V8S超级电机', 'weight': 8}
+]
 
-sorted_integrated_low_altitude_economy_keywords = [
+# Topic = 低空经济
+low_altitude_economy_keywords = [
     {'keyword': '低空物流', 'weight': 10},
     {'keyword': '低空经济', 'weight': 10},
     {'keyword': 'eVTOL', 'weight': 10},
@@ -45,6 +31,7 @@ sorted_integrated_low_altitude_economy_keywords = [
     {'keyword': '智能飞行', 'weight': 8},
 ]
 
+# Topic = 商业航天法
 commercial_space_keywords = [
     {'keyword': '运载火箭', 'weight': 9.5},
     {'keyword': '卫星互联网', 'weight': 9.0},
@@ -61,11 +48,11 @@ commercial_space_keywords = [
     {'keyword': '银河航天', 'weight': 8},
     {'keyword': '银河互联网', 'weight': 8},
     {'keyword': 'Galactic Network', 'weight': 8},
-    {'keyword': '蓝箭', 'weight': 8},
+    {'keyword': '蓝箭', 'weight': 10},
     {'keyword': 'LandSpace', 'weight': 8},
-    {'keyword': '星际荣耀', 'weight': 8},
+    {'keyword': '星际荣耀', 'weight': 10},
     {'keyword': 'iSpace', 'weight': 8},
-    {'keyword': '零壹', 'weight': 8},
+    {'keyword': '零壹', 'weight': 10},
     {'keyword': 'OneSpace', 'weight': 8},
     {'keyword': '中科微星', 'weight': 7},
     {'keyword': '天仪研究院', 'weight': 7},
@@ -79,29 +66,27 @@ commercial_space_keywords = [
     {'keyword': '快舟', 'weight': 8},
 ]
 
-def newInsertTopic(Topic_name, Topic_keywords):
-    try:
-        # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
-        if connection.is_connected():
-            cursor = connection.cursor()
-            # 插入数据
-            for keyword in Topic_keywords:
-                sql = ("INSERT INTO topickeywords (topic, keyword, weight) VALUES (%s, %s, %s)")
-                val = (Topic_name, keyword['keyword'], keyword['weight'])
-                cursor.execute(sql, val)
-
-            # 提交更改到数据库
-        connection.commit()
-
-    except Error as e:
-        print(f"Error while connecting to MySQL: {e}")
-        print(f"SQL STRING: {sql}")
-        return False  # 发生错误时返回False
-    finally:
-        # 关闭数据库连接
-        if connection.is_connected():
-            cursor.close()
-            connection.close()
-
-newInsertTopic('商业航天',commercial_space_keywords)
+# Topic = 通用价值点
+common_value_keywords = [
+    {'keyword': '加群', 'weight': 10},
+    {'keyword': '入群', 'weight': 10},
+    {'keyword': '微信群', 'weight': 10},
+    {'keyword': '交流群', 'weight': 10},
+    {'keyword': '投研群', 'weight': 10},
+    {'keyword': '扫码', 'weight': 10},
+    {'keyword': '二维码', 'weight': 10},
+    {'keyword': '电话会', 'weight': 10},
+    {'keyword': '策略会', 'weight': 10},
+    {'keyword': '业绩会', 'weight': 10},
+    {'keyword': '腾讯会议', 'weight': 10},
+    {'keyword': '沙龙', 'weight': 10},
+    {'keyword': '峰会', 'weight': 10},
+    {'keyword': '交流会', 'weight': 10},
+    {'keyword': '路演', 'weight': 10},
+    {'keyword': '年报', 'weight': 10},
+    {'keyword': '财报', 'weight': 10},
+    {'keyword': '业绩报', 'weight': 10},
+    {'keyword': '梳理', 'weight': 9},
+    {'keyword': '产业链梳理', 'weight': 10},
+    {'keyword': '测算', 'weight': 10},
+]

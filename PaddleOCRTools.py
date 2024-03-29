@@ -15,14 +15,15 @@ image = Image.open(img_path)
 
 # 进行多语种文字识别
 result = ocr.ocr(img_path, cls=True)
+print(result)
 
-# 可视化识别结果
-image = draw_ocr(image, result, font_path='simfang.ttf')
-image.show()
+# # 可视化识别结果
+# image = draw_ocr(image, result, font_path='simfang.ttf')
+# image.show()
 
-# 进行手写体文字识别
-handwriting_ocr = PaddleOCR(use_angle_cls=True, use_gpu=False, det_model_dir='handwriting_det', rec_model_dir='handwriting_rec')
-result_handwriting = handwriting_ocr.ocr('handwriting_example.jpg', cls=True)
-image_handwriting = Image.open('handwriting_example.jpg')
-image_handwriting = draw_ocr(image_handwriting, result_handwriting, font_path='simfang.ttf')
-image_handwriting.show()
+# # 进行手写体文字识别
+# handwriting_ocr = PaddleOCR(use_angle_cls=True, use_gpu=False, det_model_dir='handwriting_det', rec_model_dir='handwriting_rec')
+# result_handwriting = handwriting_ocr.ocr('handwriting_example.jpg', cls=True)
+# image_handwriting = Image.open('handwriting_example.jpg')
+# image_handwriting = draw_ocr(image_handwriting, result_handwriting, font_path='simfang.ttf')
+# image_handwriting.show()

@@ -22,16 +22,18 @@ db_password= '19871127ldld'
 # {'keyword': '算法交易', 'weight': 10}
 # ]
 
-# xiaomi_car_keywords = [
-#     {'keyword': '小米汽车', 'weight': 10},
-#     {'keyword': 'SU7', 'weight': 10},
-#     {'keyword': '小米首款车型', 'weight': 10},
-#     {'keyword': '发布会', 'weight': 9},
-#     {'keyword': '定价', 'weight': 9},
-#     {'keyword': '雷军', 'weight': 9},
-#     {'keyword': 'V8S超级电机', 'weight': 8}
-# ]
+# Topic = 小米汽车
+xiaomi_car_keywords = [
+    {'keyword': '小米汽车', 'weight': 10},
+    {'keyword': 'SU7', 'weight': 10},
+    {'keyword': '小米首款车型', 'weight': 10},
+    {'keyword': '发布会', 'weight': 9},
+    {'keyword': '定价', 'weight': 9},
+    {'keyword': '雷军', 'weight': 9},
+    {'keyword': 'V8S超级电机', 'weight': 8}
+]
 
+# Topic = 低空经济
 sorted_integrated_low_altitude_economy_keywords = [
     {'keyword': '低空物流', 'weight': 10},
     {'keyword': '低空经济', 'weight': 10},
@@ -45,6 +47,7 @@ sorted_integrated_low_altitude_economy_keywords = [
     {'keyword': '智能飞行', 'weight': 8},
 ]
 
+# Topic = 商业航天法
 commercial_space_keywords = [
     {'keyword': '运载火箭', 'weight': 9.5},
     {'keyword': '卫星互联网', 'weight': 9.0},
@@ -77,6 +80,31 @@ commercial_space_keywords = [
     {'keyword': '鸿雁', 'weight': 8},
     {'keyword': '虹云', 'weight': 8},
     {'keyword': '快舟', 'weight': 8},
+]
+
+# Topic = 通用价值点
+common_value_keywords = [
+    {'keyword': '加群', 'weight': 10},
+    {'keyword': '入群', 'weight': 10},
+    {'keyword': '微信群', 'weight': 10},
+    {'keyword': '交流群', 'weight': 10},
+    {'keyword': '投研群', 'weight': 10},
+    {'keyword': '扫码', 'weight': 10},
+    {'keyword': '二维码', 'weight': 10},
+    {'keyword': '电话会', 'weight': 10},
+    {'keyword': '策略会', 'weight': 10},
+    {'keyword': '业绩会', 'weight': 10},
+    {'keyword': '腾讯会议', 'weight': 10},
+    {'keyword': '沙龙', 'weight': 10},
+    {'keyword': '峰会', 'weight': 10},
+    {'keyword': '交流会', 'weight': 10},
+    {'keyword': '路演', 'weight': 10},
+    {'keyword': '年报', 'weight': 10},
+    {'keyword': '财报', 'weight': 10},
+    {'keyword': '业绩报', 'weight': 10},
+    {'keyword': '梳理', 'weight': 9},
+    {'keyword': '产业链梳理', 'weight': 10},
+    {'keyword': '测算', 'weight': 10},
 ]
 
 def newInsertTopic(Topic_name, Topic_keywords):

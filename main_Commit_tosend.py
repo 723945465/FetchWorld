@@ -79,7 +79,7 @@ def commit_wx_chat_pic_tosend(hismsg_id, temp_info_author_name, topic_matched, k
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
-            content = ("【"+ str(topic_matched) +":"
+            content = ("【"+ str(topic_matched) +"："
                        + str(keywords_str) + "】"
                        +str(temp_info_author_name)+" 微信新发图片或文件 ")
             content = SQLStrPass.escape_sql_string(content)
@@ -122,7 +122,7 @@ def commit_wb_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matc
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
-            content = ("【"+ str(topic_matched) +":"
+            content = ("【"+ str(topic_matched) +"："
                        + str(keywords_str) + "】"
                        +str(temp_info_author_name)+" 新发微博： " + str(temp_info_url))
             content = SQLStrPass.escape_sql_string(content)
@@ -165,7 +165,7 @@ def commit_xq_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matc
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
-            content = ("【"+ str(topic_matched) +":"
+            content = ("【"+ str(topic_matched) +"："
                        + str(keywords_str) + "】"
                        +str(temp_info_author_name)+" 新发雪球： " + str(temp_info_url))
             content = SQLStrPass.escape_sql_string(content)
@@ -208,7 +208,7 @@ def commit_wxpublic_tosend(hismsg_id, temp_info_author_name, temp_info_title, te
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
-            content = ("【"+ str(topic_matched) +":"
+            content = ("【"+ str(topic_matched) +"："
                        + str(keywords_str) + "】"
                        +str(temp_info_author_name)+" 公众号新推文： " + str(temp_info_title) + "  " + str(temp_info_url))
             content = SQLStrPass.escape_sql_string(content)

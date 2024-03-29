@@ -39,6 +39,12 @@ def getTopicList():
 
 # def insert_tosend(where_to_send, info_type, info_dwh_reletive_file_path)
 
+def keywords_list_to_string(keywordsList):
+    keywords_str = ""
+    for item in keywordsList:
+        keyword = str(item).split("@@")[0]
+        keywords_str = keywords_str + keyword + " "
+    return  keywords_str
 
 def query_info_dwh_reletive_file_path(hismsg_id):
     try:
@@ -73,9 +79,9 @@ def commit_wx_chat_pic_tosend(hismsg_id, temp_info_author_name, topic_matched, k
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
-            content = ("【"+ str(topic_matched) +"】"
-                       "【" + str(keywords_str) + "】"
-                       +str(temp_info_author_name)+" 发了新图片或文件 ")
+            content = ("【"+ str(topic_matched) +":"
+                       + str(keywords_str) + "】"
+                       +str(temp_info_author_name)+" 微信新发图片或文件 ")
             content = SQLStrPass.escape_sql_string(content)
             sql = f"""insert into to_send_info 
             (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
@@ -85,10 +91,15 @@ def commit_wx_chat_pic_tosend(hismsg_id, temp_info_author_name, topic_matched, k
             connection.commit()
 
             # 插入图片
-            content = str(temp_info_author_name) + " 发了新图片或文件 "
             sql = f"""insert into to_send_info 
                         (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
                         values ('{topic_matched}','no','图片','','{info_dwh_reletive_file_path}')"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+            # 标记info_has_commit_tosend = yes
+            sql = f"""update hismsg_info set info_has_commit_tosend = 'yes' where id = {hismsg_id}"""
             cursor.execute(sql)
             # 提交更改到数据库
             connection.commit()
@@ -103,6 +114,126 @@ def commit_wx_chat_pic_tosend(hismsg_id, temp_info_author_name, topic_matched, k
             cursor.close()
             connection.close()
 
+def commit_wb_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matched, keywords_str):
+    info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            # 插入文字提示
+            content = ("【"+ str(topic_matched) +":"
+                       + str(keywords_str) + "】"
+                       +str(temp_info_author_name)+" 新发微博： " + str(temp_info_url))
+            content = SQLStrPass.escape_sql_string(content)
+            sql = f"""insert into to_send_info 
+            (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
+            values ('{topic_matched}','no','文字','{content}','')"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+            # 插入图片
+            sql = f"""insert into to_send_info 
+                        (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
+                        values ('{topic_matched}','no','图片','','{info_dwh_reletive_file_path}')"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+            # 标记info_has_commit_tosend = yes
+            sql = f"""update hismsg_info set info_has_commit_tosend = 'yes' where id = {hismsg_id}"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {sql}")
+        return False  # 发生错误时返回False
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+def commit_xq_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matched, keywords_str):
+    info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            # 插入文字提示
+            content = ("【"+ str(topic_matched) +":"
+                       + str(keywords_str) + "】"
+                       +str(temp_info_author_name)+" 新发雪球： " + str(temp_info_url))
+            content = SQLStrPass.escape_sql_string(content)
+            sql = f"""insert into to_send_info 
+            (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
+            values ('{topic_matched}','no','文字','{content}','')"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+            # 插入图片
+            sql = f"""insert into to_send_info 
+                        (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
+                        values ('{topic_matched}','no','图片','','{info_dwh_reletive_file_path}')"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+            # 标记info_has_commit_tosend = yes
+            sql = f"""update hismsg_info set info_has_commit_tosend = 'yes' where id = {hismsg_id}"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {sql}")
+        return False  # 发生错误时返回False
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+def commit_wxpublic_tosend(hismsg_id, temp_info_author_name, temp_info_title, temp_info_url, topic_matched, keywords_str):
+    info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            # 插入文字提示
+            content = ("【"+ str(topic_matched) +":"
+                       + str(keywords_str) + "】"
+                       +str(temp_info_author_name)+" 公众号新推文： " + str(temp_info_title) + "  " + str(temp_info_url))
+            content = SQLStrPass.escape_sql_string(content)
+            sql = f"""insert into to_send_info 
+            (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
+            values ('{topic_matched}','no','文字','{content}','')"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+            # 标记info_has_commit_tosend = yes
+            sql = f"""update hismsg_info set info_has_commit_tosend = 'yes' where id = {hismsg_id}"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {sql}")
+        return False  # 发生错误时返回False
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
 
 def commit_hismsg_tosend(LengthThreshold):
     info_rows = []
@@ -115,6 +246,7 @@ def commit_hismsg_tosend(LengthThreshold):
                 WHERE info_ready_for_analysis = 'yes' AND info_content is not null 
                 AND (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL) 
                 AND LENGTH(info_analysis_status) > {LengthThreshold}
+                and LENGTH(info_match_topic) > 2
                 AND (info_has_commit_tosend != 'yes' or info_has_commit_tosend IS null)
                 AND create_time  >= '2024-03-29'
                 order by id desc;"""
@@ -141,6 +273,7 @@ def commit_hismsg_tosend(LengthThreshold):
         temp_info_type = '' if temp_info[5] is None else temp_info[5]
         temp_info_title = '' if temp_info[6] is None else temp_info[6]
         temp_info_content = '' if temp_info[7] is None else temp_info[7]
+        temp_info_url =  '' if temp_info[7] is None else temp_info[8]
         temp_info_analysis_status_dict = {} if temp_info[11] is None else json.loads(temp_info[11])
         temp_info_abstract = '' if temp_info[12] is None else temp_info[12]
         temp_info_match_topic_list = [] if temp_info[13] is None else json.loads(temp_info[13])
@@ -148,23 +281,25 @@ def commit_hismsg_tosend(LengthThreshold):
         for matched_topic in temp_info_match_topic_list:
             print(matched_topic)
             topic_key = list(dict(matched_topic).keys())[0]
-            keywords_str = list(dict(matched_topic).values())[0]
+            keywords_list = list(dict(matched_topic).values())[0]
+            keywords_str = keywords_list_to_string(keywords_list)
             topic = topic_key.split('##')[0]
             match_score = topic_key.split('##')[1]
             if temp_info_type == "微信聊天图片":
                 commit_wx_chat_pic_tosend(temp_info_id,temp_info_author_name,topic,keywords_str)
             elif temp_info_type == "微博推文":
-                print("微博推文")
+                commit_wb_tosend(temp_info_id,temp_info_author_name,temp_info_url,topic,keywords_str)
             elif temp_info_type == "雪球推文":
-                print("雪球推文")
+                commit_xq_tosend(temp_info_id,temp_info_author_name,temp_info_url,topic,keywords_str)
             elif temp_info_type == "公众号推文":
-                print("公众号推文")
+               commit_wxpublic_tosend(temp_info_id,temp_info_author_name,temp_info_title,temp_info_url,topic,keywords_str)
             else:
                 print("未识别的temp_info_type：" + temp_info_type)
 
 
 if __name__ == '__main__':
     # query_info_dwh_reletive_file_path(5739)
+
     while True:
         TopicList = getTopicList()
         # 对 info_analysis_status 字段按照长度过滤

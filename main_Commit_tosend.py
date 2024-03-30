@@ -244,7 +244,7 @@ def commit_hismsg_tosend(LengthThreshold):
                 WHERE info_ready_for_analysis = 'yes' AND info_content is not null 
                 AND (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL) 
                 AND LENGTH(info_analysis_status) > {LengthThreshold}
-                and LENGTH(info_match_topic) > 2
+                and LENGTH(info_match_topic) >= 2
                 AND (info_has_commit_tosend != 'yes' or info_has_commit_tosend IS null)
                 AND create_time  >= '2024-03-29'
                 order by id desc;"""
@@ -293,6 +293,19 @@ def commit_hismsg_tosend(LengthThreshold):
                commit_wxpublic_tosend(temp_info_id,temp_info_author_name,temp_info_title,temp_info_url,topic,keywords_str)
             else:
                 print("未识别的temp_info_type：" + temp_info_type)
+
+        if len(temp_info_match_topic_list) == 0:
+            if temp_info_type == "微信聊天图片":
+                commit_wx_chat_pic_tosend(temp_info_id, temp_info_author_name, 'unmatched', '')
+            elif temp_info_type == "微博推文":
+                commit_wb_tosend(temp_info_id, temp_info_author_name, temp_info_url, 'unmatched', '')
+            elif temp_info_type == "雪球推文":
+                commit_xq_tosend(temp_info_id, temp_info_author_name, temp_info_url, 'unmatched', '')
+            elif temp_info_type == "公众号推文":
+                commit_wxpublic_tosend(temp_info_id, temp_info_author_name, temp_info_title, temp_info_url, 'unmatched','')
+            else:
+                print("未识别的temp_info_type：" + temp_info_type)
+
 
 
 if __name__ == '__main__':

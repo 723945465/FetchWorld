@@ -125,11 +125,11 @@ def commit_wb_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matc
             content = ("【"+ str(topic_matched) +"："
                        + str(keywords_str) + "】"
                        +str(temp_info_author_name)+" 新发微博： " + str(temp_info_url))
-            content = SQLStrPass.escape_sql_string(content)
-            sql = f"""insert into to_send_info 
+
+            sql = """insert into to_send_info 
             (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
-            values ('{topic_matched}','no','文字','{content}','')"""
-            cursor.execute(sql)
+            values ( %s,'no','文字', %s,'')"""
+            cursor.execute(sql, (topic_matched, content))
             # 提交更改到数据库
             connection.commit()
 
@@ -168,11 +168,10 @@ def commit_xq_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matc
             content = ("【"+ str(topic_matched) +"："
                        + str(keywords_str) + "】"
                        +str(temp_info_author_name)+" 新发雪球： " + str(temp_info_url))
-            content = SQLStrPass.escape_sql_string(content)
-            sql = f"""insert into to_send_info 
+            sql = """insert into to_send_info 
             (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
-            values ('{topic_matched}','no','文字','{content}','')"""
-            cursor.execute(sql)
+            values ( %s,'no','文字', %s,'')"""
+            cursor.execute(sql, (topic_matched, content))
             # 提交更改到数据库
             connection.commit()
 
@@ -211,11 +210,10 @@ def commit_wxpublic_tosend(hismsg_id, temp_info_author_name, temp_info_title, te
             content = ("【"+ str(topic_matched) +"："
                        + str(keywords_str) + "】"
                        +str(temp_info_author_name)+" 公众号新推文： " + str(temp_info_title) + "  " + str(temp_info_url))
-            content = SQLStrPass.escape_sql_string(content)
-            sql = f"""insert into to_send_info 
+            sql = """insert into to_send_info 
             (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
-            values ('{topic_matched}','no','文字','{content}','')"""
-            cursor.execute(sql)
+            values ( %s,'no','文字', %s,'')"""
+            cursor.execute(sql, (topic_matched, content))
             # 提交更改到数据库
             connection.commit()
 

@@ -9,7 +9,7 @@
 # Topic = 小米汽车
 xiaomi_car_keywords = [
     {'keyword': '小米汽车', 'weight': 10},
-    {'keyword': 'SU7', 'weight': 10},
+    {'keyword': 'su7', 'weight': 10},
     {'keyword': '小米首款车型', 'weight': 10},
     {'keyword': '发布会', 'weight': 9},
     {'keyword': '定价', 'weight': 9},

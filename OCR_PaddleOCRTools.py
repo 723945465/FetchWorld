@@ -1,7 +1,7 @@
 # -*- coding = utf-8 -*-
 # @Time: 2024/3/28 20:45
 # @Author: Chris
-# @File: PaddleOCRTools.py
+# @File: OCR_PaddleOCRTools.py
 # @Software: PyCharm
 # from paddleocr import PaddleOCR, draw_ocr
 # from PIL import Image

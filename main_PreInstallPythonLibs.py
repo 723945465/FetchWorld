@@ -14,20 +14,20 @@ required_libraries = [
     'beautifulsoup4', 'requests', 'selenium',  # 网络数据获取和处理
     # 'jupyter', 'spyder', 'vscode',  # 开发环境
     # 'sqlalchemy', 'pymysql', 'psycopg2', 'sqlite',  # 数据库连接和操作
-    'openpyxl', 'xlrd', 'xlwt', 'pandasql',  # Excel 和 SQL 数据操作
-    'pyodbc', 'pandas-profiling', 'missingno',  # 数据质量分析和处理
-    'plotly', 'dash', 'cufflinks',  # 交互式数据可视化
-    'geopandas', 'folium',  # 地理数据分析和可视化
-    'nltk', 'spaCy', 'gensim',  # 文本处理和自然语言处理
+    # 'openpyxl', 'xlrd', 'xlwt', 'pandasql',  # Excel 和 SQL 数据操作
+    # 'pyodbc', 'pandas-profiling', 'missingno',  # 数据质量分析和处理
+    # 'plotly', 'dash', 'cufflinks',  # 交互式数据可视化
+    # 'geopandas', 'folium',  # 地理数据分析和可视化
+    # 'nltk', 'spaCy', 'gensim',  # 文本处理和自然语言处理
     # 'networkx', 'igraph',  # 图论和网络分析
-    'statspy', 'pingouin',  # 统计分析
-    'pandasgui', 'dtale',  # 数据分析 GUI 工具
-    'auto_ml', 'tpot',  # 自动化机器学习
-    'vaex', 'dask',  # 大数据集处理
-    'yellowbrick', 'shap',  # 可视化模型解释
-    'sympy', 'quantstats',  # 数学和金融分析
-    'tabulate', 'pandas-flavor',  # 数据转换和操作
-    'arrow', 'zope.interface',  # 日期和时间处理
+    # 'statspy', 'pingouin',  # 统计分析
+    # 'pandasgui', 'dtale',  # 数据分析 GUI 工具
+    # 'auto_ml', 'tpot',  # 自动化机器学习
+    # 'vaex', 'dask',  # 大数据集处理
+    # 'yellowbrick', 'shap',  # 可视化模型解释
+    # 'sympy', 'quantstats',  # 数学和金融分析
+    # 'tabulate', 'pandas-flavor',  # 数据转换和操作
+    # 'arrow', 'zope.interface',  # 日期和时间处理
     # 'cryptography', 'paramiko',  # 加密和远程连接
 ]
 

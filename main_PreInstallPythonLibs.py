@@ -9,9 +9,9 @@ required_libraries = [
     'mysql-connector-python', #mysql
     'flask', #flask WebApi
     'numpy', 'pandas', 'matplotlib', 'seaborn',  # 数据处理和可视化
-    'scipy', 'statsmodels', 'scikit-learn', 'xgboost', 'lightgbm',  # 数据分析和机器学习
-    # 'tensorflow', 'keras', 'pytorch', 'fastai',  # 深度学习框架
     'beautifulsoup4', 'requests', 'selenium',  # 网络数据获取和处理
+    # 'scipy', 'statsmodels', 'scikit-learn', 'xgboost', 'lightgbm',  # 数据分析和机器学习
+    # 'tensorflow', 'keras', 'pytorch', 'fastai',  # 深度学习框架
     # 'jupyter', 'spyder', 'vscode',  # 开发环境
     # 'sqlalchemy', 'pymysql', 'psycopg2', 'sqlite',  # 数据库连接和操作
     # 'openpyxl', 'xlrd', 'xlwt', 'pandasql',  # Excel 和 SQL 数据操作

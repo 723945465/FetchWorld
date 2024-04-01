@@ -1,39 +1,37 @@
 import requests
 from bs4 import BeautifulSoup
 from PIL import Image
-import pytesseract
+import OCR_PaddleOCRTools
 from io import BytesIO
 import os
 
-# 设置 tesseract 的安装路径
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
-
-
-def extract_text_from_image(image_url):
-
+def download_image(local_file_path, image_url):
+    # 尝试下载图片
     try:
+        # 发起GET请求
         response = requests.get(image_url)
-        img = Image.open(BytesIO(response.content))
 
-        text = pytesseract.image_to_string(img, lang='chi_sim')
+        # 检查请求是否成功
+        if response.status_code == 200:
+            # 以二进制写入模式打开文件
+            with open(local_file_path, 'wb') as file:
+                # 将图片数据写入文件
+                file.write(response.content)
+            print(f"Image downloaded and saved to {local_file_path}")
+            return "success"
+        else:
+            return(f"Failed to download image. Status code: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        # 捕获请求异常，如网络问题、URL错误等
+        return(f"An error occurred during the request: {e}")
+    except IOError as e:
+        # 捕获文件操作异常，如无法写入文件等
+        return(f"An error occurred while handling files: {e}")
+    except Exception as e:
+        # 捕获其他所有未预料到的异常
+        return(f"An unexpected error occurred: {e}")
 
-        # 去除换行符
-        text = text.replace('\n', ' ')
-        # 去掉中文文字之间的空格
-        text = ''.join([c if c.strip() or ord(c) > 127 else '' for c in text])
-        # 保留连续空格中的一个空格
-        text = ' '.join(text.split())
-
-        return text.strip()
-
-    except Exception  as e:
-        print(f"Error while extract_text_from_image in parse_WXPublic_webpage: {e}")
-        return ""
-
-
-
-def parse_WXPublic_webpage(url):
+def parse_WXPublic_webpage(url, temp_ocr_image_filepath):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -51,8 +49,20 @@ def parse_WXPublic_webpage(url):
         image_url = image.get('data-src') or image.get('src')  # 尝试获取 data-src 属性，如果为空则获取 src 属性
         if image_url:
             # 使用 OCR 识别图片中的文本
-            image_text = extract_text_from_image(image_url)
-            if len(image_text) > 0:
+            if(download_image(temp_ocr_image_filepath,image_url) != 'success'):
+                print(f"图片下载失败，跳过继续：{image_url}")
+                continue
+            if os.path.exists(temp_ocr_image_filepath) == False:
+                print(f"本地文件未找到，跳过继续：{image_url}")
+                continue
+
+            image_text = OCR_PaddleOCRTools.PicToText_PaddleOCR(temp_ocr_image_filepath)
+            if "##Error##" in image_text:
+                print(f"OCR解析失败，跳过继续。原始图片链接：{image_url}")
+                continue
+
+            if (len(image_text) > 0):
+                print(image_text)
                 all_image_text = all_image_text + image_text
 
     if len(all_image_text) > 0:
@@ -63,5 +73,5 @@ def parse_WXPublic_webpage(url):
 
 if __name__ == "__main__":
     webpage_url = 'https://mp.weixin.qq.com/s?__biz=Mzg5NjY2NjQ4Mg==&mid=2247484629&idx=1&sn=eaef8ed0556042288d6c33f5601a11c1&chksm=c07cdac8f70b53de4bb48bf3abdf6534354f0b0b7604910fdbee76b2cad9c6b1ce2b6e388d42&token=935428064&lang=zh_CN#rd'  # 你要解析的网页链接
-    parsed_text = parse_WXPublic_webpage(webpage_url)
+    parsed_text = parse_WXPublic_webpage(webpage_url,'E:\\111.jpg')
     print(parsed_text)

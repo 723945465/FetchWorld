@@ -1,3 +1,4 @@
+import os.path
 from ftplib import FTP
 import OCR_PaddleOCRTools
 
@@ -6,34 +7,36 @@ ftp_host = '43.140.208.184'
 ftp_user = 'ftpuser'
 ftp_passwd = 'lhins-1wsdpang'
 
-# 设置要下载的文件路径和保存的本地路径
-# remote_file_path = '1.png'
-local_file_path = 'E:\\11.png'
-
-# 连接到FTP服务器
-ftp = FTP(ftp_host)
-ftp.encoding = "GB18030"
-ftp.login(ftp_user, ftp_passwd)
-
-file_list = ftp.nlst()
-
-file_count = 0
-# 打印文件列表
-for remote_file_path in file_list:
-    file_count = file_count +1
-    if file_count <= 10:
-        print(remote_file_path)
+def download_file_from_dwh(temp_dwh_reletive_file_path, local_filepath):
+    try:
+        # 连接到FTP服务器
+        ftp = FTP(ftp_host)
+        ftp.encoding = "GB18030"
+        ftp.timeout = 30
+        ftp.login(ftp_user, ftp_passwd)
         # 从FTP下载文件
-        with open(local_file_path, 'wb') as file:
-            print(f"Downloading {remote_file_path}...")
-            ftp.retrbinary('RETR 1.png', file.write)
-        print(f"Downloaded {remote_file_path} successfully.")
-        print(OCR_PaddleOCRTools.PicToText_PaddleOCR(local_file_path))
+        with open(local_filepath, 'wb') as file:
+            ftp.retrbinary('RETR ' + str(temp_dwh_reletive_file_path), file.write)
+        if os.path.exists(local_filepath):
+            if os.path.getsize(local_filepath) > 0:
+                return 'success'
+
+        return 'DWH文件下载失败：' + temp_dwh_reletive_file_path
+
+    except Exception as e:
+        print(f"Exception while download file from dwh: {e}")
+        return f"Exception while download file from dwh: {e}"
+    finally:
+        # 关闭FTP连接
+        ftp.quit()
 
 
 
 
+if __name__ == '__main__':
+    # print(download_file_from_dwh('1234.png','D:\\1.png'))
+    print(OCR_PaddleOCRTools.PicToText_PaddleOCR('D:\\135.png'))
 
-# 关闭FTP连接
-ftp.quit()
+
+
 

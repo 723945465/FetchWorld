@@ -57,14 +57,20 @@ def string_concat(strings):
     return result
 
 def PicToText_PaddleOCR(img_path):
-    ocr = PaddleOCR(use_angle_cls=False, lang="ch")  # need to run only once to download and load model into memory
-    str_list = []
-    result = ocr.ocr(img_path, cls=True)
-    for idx in range(len(result)):
-        res = result[idx]
-        for line in res:
-            str_list.append(line[1][0])
-    return string_concat(str_list)
+    try:
+        ocr = PaddleOCR(use_angle_cls=False, lang="ch")  # need to run only once to download and load model into memory
+        str_list = []
+        result = ocr.ocr(img_path, cls=True)
+        for idx in range(len(result)):
+            res = result[idx]
+            for line in res:
+                str_list.append(line[1][0])
+        return string_concat(str_list)
+
+    except Exception as e:
+        return f"##Error## Exception while ocr file {img_path}:{e}"
+
+
 
 
 if __name__ == '__main__':

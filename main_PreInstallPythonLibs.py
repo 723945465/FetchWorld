@@ -6,6 +6,7 @@
 import os
 
 required_libraries = [
+    'emoji', #表情包字符
     'ftplib', #FTP
     'mysql-connector-python', #mysql
     'flask', #flask WebApi

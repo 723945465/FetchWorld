@@ -6,6 +6,7 @@
 import os
 
 required_libraries = [
+    'ftplib', #FTP
     'mysql-connector-python', #mysql
     'flask', #flask WebApi
     'numpy', 'pandas', 'matplotlib', 'seaborn',  # 数据处理和可视化

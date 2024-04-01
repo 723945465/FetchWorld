@@ -66,7 +66,7 @@ def parse_WXPublic_webpage(url, temp_ocr_image_filepath):
                 all_image_text = all_image_text + image_text
 
     if len(all_image_text) > 0:
-        all_text = all_text + "插图文字：" + all_image_text
+        all_text = all_text + "######插图文字######" + all_image_text
 
     return all_text
 

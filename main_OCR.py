@@ -8,6 +8,7 @@ import OCR_PaddleOCRTools
 import FTPTools
 import SQLStrPass
 import time
+import WXPublicContentParse
 
 db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
@@ -198,33 +199,103 @@ def ocr_recent_weibo_xueqiu_image():
     return "success"
 
 
+def ocr_recent_WXPublic_image():
+    info_rows = []
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password,
+                                             charset=charset)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            query = """SELECT * FROM fetchtheworld.hismsg_info 
+            WHERE (info_ready_for_analysis != 'yes' OR info_ready_for_analysis IS NULL) 
+            AND (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL) 
+            AND info_source = '公众号'
+            AND create_time  >= '2024-03-30';"""
+
+            cursor.execute(query)
+            info_rows = cursor.fetchall()
+
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {query}")
+        return "##Error## "+ f"Error while connecting to MySQL: {e}" + f"SQL STRING: {query}"
+
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+    for temp_info in info_rows:
+        temp_info_id = temp_info[0]
+        temp_info_url = '' if temp_info[7] is None else temp_info[8]
+        ocr_temp_image_filepath = Dir_ocr_temp_image_folder + "WXPublic_ocr_temp.jpg"
+        content_with_pic_parse = WXPublicContentParse.parse_WXPublic_webpage(temp_info_url,ocr_temp_image_filepath)
+        sql_pass_text_content = SQLStrPass.escape_sql_string(content_with_pic_parse)
+        print(sql_pass_text_content)
+        try:
+            # 连接到MySQL数据库
+            connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user,
+                                                 password=db_password, charset=charset)
+
+            if connection.is_connected():
+                cursor = connection.cursor()
+                # 创建插入SQL语句
+                query = """update hismsg_info set info_content = %s, info_ready_for_analysis = 'yes' where id = %s"""
+                # 执行SQL语句
+                cursor.execute(query, (sql_pass_text_content, temp_info_id))
+                connection.commit()
+        except Error as e:
+            return "##Error## " + f"Error while connecting to MySQL: {e}" + f"SQL STRING: {query}"
+
+
+        finally:
+            # 关闭数据库连接
+            if connection.is_connected():
+                cursor.close()
+                connection.close()
+
+
+    return "success"
+
 if __name__ == '__main__':
     if os.path.exists(Dir_ocr_temp_image_folder) == False:
         print(f"OCR临时文件夹不存在：{Dir_ocr_temp_image_folder}")
         exit(0)
 
-    while True:
-        try:
-            res = ocr_recent_wechat_image()
-            if (res != "success"):
-                print("ocr_recent_wechat_image严重发生错误：" + res)
-                print("无限循环退出")
-                break
-        except Exception as e:
-            print(f"ocr_recent_wechat_image发生捕获到未处理异常: {e}")
-            print("无限循环继续")
 
-        try:
-            res = ocr_recent_weibo_xueqiu_image()
-            if (res != "success"):
-                print("ocr_recent_weibo_xueqiu_image严重发生错误：" + res)
-                print("无限循环退出")
-                break
-        except Exception as e:
-            print(f"ocr_recent_weibo_xueqiu_image发生捕获到未处理异常: {e}")
-            print("无限循环继续")
+    try:
+        res = res = ocr_recent_WXPublic_image()
+        if (res != "success"):
+            print("ocr_recent_WXPublic_image严重发生错误：" + res)
+            print("无限循环退出")
+    except Exception as e:
+        print(f"ocr_recent_wechat_image发生捕获到未处理异常: {e}")
+        print("无限循环继续")
 
-        print("waiting...")
-        time.sleep(3)
+    # while True:
+    #     try:
+    #         res = ocr_recent_wechat_image()
+    #         if (res != "success"):
+    #             print("ocr_recent_wechat_image严重发生错误：" + res)
+    #             print("无限循环退出")
+    #             break
+    #     except Exception as e:
+    #         print(f"ocr_recent_wechat_image发生捕获到未处理异常: {e}")
+    #         print("无限循环继续")
+    #
+    #     try:
+    #         res = ocr_recent_weibo_xueqiu_image()
+    #         if (res != "success"):
+    #             print("ocr_recent_weibo_xueqiu_image严重发生错误：" + res)
+    #             print("无限循环退出")
+    #             break
+    #     except Exception as e:
+    #         print(f"ocr_recent_weibo_xueqiu_image发生捕获到未处理异常: {e}")
+    #         print("无限循环继续")
+    #
+    #     print("waiting...")
+    #     time.sleep(3)
 
 

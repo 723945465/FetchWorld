@@ -48,7 +48,7 @@ def insert_article(name_of_acc, title, content, url):
             cursor = connection.cursor()
             # 创建插入SQL语句
             query = """insert into hismsg_info (info_source,info_author_name,info_type,info_title,info_content,info_internet_address, info_ready_for_analysis)
-                       values ('公众号', %s, '公众号推文', %s, %s, %s, 'yes')"""
+                       values ('公众号', %s, '公众号推文', %s, %s, %s, 'no')"""
             # 执行SQL语句
             cursor.execute(query, (name_of_acc, title, content, url))
             connection.commit()

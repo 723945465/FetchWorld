@@ -7,7 +7,7 @@
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    print('PyCharm')
     # picpath = r"C:\1710483238241.jpg"
     # res = OCR_wx.pic_to_text(picpath)
     # print(res)

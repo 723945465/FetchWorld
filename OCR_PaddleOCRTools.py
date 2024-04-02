@@ -74,9 +74,6 @@ def PicToText_PaddleOCR(img_path):
 
 
 if __name__ == '__main__':
-    print(PicToText_PaddleOCR("E:\\1.png"))
-    print(PicToText_PaddleOCR("E:\\2.jpg"))
-    print(PicToText_PaddleOCR("E:\\3.jpg"))
-    print(PicToText_PaddleOCR("E:\\4.jpg"))
+    print(PicToText_PaddleOCR("C:\\1.jpg"))
 
 

@@ -11,7 +11,7 @@ def test_get_status():
     """
     测试远程/run接口
     """
-    response = requests.get(f"{ControlCenterUrl}/run")
+    response = requests.get(f"{ControlCenterUrl}/run_status")
     print(response.json())
     assert response.status_code == 200, f"Expected status code 200, got {response.status_code}"
     # expected_status = {'cpu_usage': 60, 'memory_usage': 80, 'disk_usage': 50}

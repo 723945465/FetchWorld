@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import mysql.connector
 from mysql.connector import Error
 import json
+import re
 
 app = Flask(__name__)
 db_host= '114.55.128.212'
@@ -49,10 +50,15 @@ def receive_report():
         return jsonify({'status': 'error', 'message': 'Invalid report data'}), 400
 
 
-@app.route('/run', methods=['GET'])
+@app.route('/run_status', methods=['GET'])
 def run_status():
-    json_str = json.dumps(ServiceStatusDict, indent=4)
-    return jsonify(json_str), 200
+    res_string = ""
+    for service, status in ServiceStatusDict.items():
+        # print(f"{str(status[0])}  {service}: {str(status[1])}")
+        res_string = (res_string
+                      + f"{str(status[0])} &nbsp;{service}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {str(status[1])}"
+                      + "</br>")
+    return res_string, 200
 
 
 if __name__ == '__main__':

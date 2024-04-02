@@ -1,7 +1,6 @@
 import requests
 from requests.exceptions import Timeout
 from datetime import datetime
-import time
 
 # 远程Flask应用的URL
 ControlCenterUrl = 'http://47.97.219.6:1868'  # 请替换为你的Flask应用的实际URL

@@ -137,7 +137,7 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
             temp_info_match_topic = []
         else:
             try:
-                temp_info_analysis_status_dict = json.loads(temp_info[13])
+                temp_info_match_topic = json.loads(temp_info[13])
             except json.JSONDecodeError as e:
                 print(f"Error parsing info_match_topic to JSON when analysis topic keywords. e: {e}")
                 print(f"set this info id:{temp_info_id} as bad..")

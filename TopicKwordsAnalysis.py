@@ -118,7 +118,14 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
         temp_info_id = temp_info[0]
         temp_info_title = '' if temp_info[6] is None else temp_info[6]
         temp_info_content = '' if temp_info[7] is None else temp_info[7]
-        temp_info_analysis_status_dict = {} if temp_info[11] is None else json.loads(temp_info[11])
+        temp_info_analysis_status_dict = {}
+        if temp_info[11] is None or temp_info[11] == "":
+            temp_info_analysis_status_dict = {}
+        else:
+            try:
+                temp_info_analysis_status_dict = json.loads(temp_info[11])
+            except json.JSONDecodeError as e:
+                print(f"Error parsing JSON when analysis topic keywords. e: {e}, id:{temp_info_id}")
         temp_info_abstract = '' if temp_info[12] is None else temp_info[12]
         temp_info_match_topic = [] if temp_info[13] is None else json.loads(temp_info[13])
         match_condition_dict = {}

@@ -230,9 +230,13 @@ def ocr_recent_WXPublic_image():
     for temp_info in info_rows:
         temp_info_id = temp_info[0]
         temp_info_url = '' if temp_info[7] is None else temp_info[8]
+        temp_info_title = '' if temp_info[6] is None else temp_info[6]
+        # temp_info_content = '' if temp_info[7] is None else temp_info[7]
         ocr_temp_image_filepath = Dir_ocr_temp_image_folder + "WXPublic_ocr_temp.jpg"
         content_with_pic_parse = WXPublicContentParse.parse_WXPublic_webpage(temp_info_url,ocr_temp_image_filepath)
         sql_pass_text_content = SQLStrPass.escape_sql_string(content_with_pic_parse)
+        print(f"######公号推文《{temp_info_title}》解析完毕######")
+        print(temp_info_url)
         print(sql_pass_text_content)
         try:
             # 连接到MySQL数据库
@@ -264,38 +268,37 @@ if __name__ == '__main__':
         print(f"OCR临时文件夹不存在：{Dir_ocr_temp_image_folder}")
         exit(0)
 
+    while True:
+        try:
+            res = ocr_recent_wechat_image()
+            if (res != "success"):
+                print("ocr_recent_wechat_image严重发生错误：" + res)
+                print("无限循环退出")
+                break
+        except Exception as e:
+            print(f"ocr_recent_wechat_image发生捕获到未处理异常: {e}")
+            print("无限循环继续")
 
-    try:
-        res = res = ocr_recent_WXPublic_image()
-        if (res != "success"):
-            print("ocr_recent_WXPublic_image严重发生错误：" + res)
-            print("无限循环退出")
-    except Exception as e:
-        print(f"ocr_recent_wechat_image发生捕获到未处理异常: {e}")
-        print("无限循环继续")
+        try:
+            res = ocr_recent_weibo_xueqiu_image()
+            if (res != "success"):
+                print("ocr_recent_weibo_xueqiu_image严重发生错误：" + res)
+                print("无限循环退出")
+                break
+        except Exception as e:
+            print(f"ocr_recent_weibo_xueqiu_image发生捕获到未处理异常: {e}")
+            print("无限循环继续")
 
-    # while True:
-    #     try:
-    #         res = ocr_recent_wechat_image()
-    #         if (res != "success"):
-    #             print("ocr_recent_wechat_image严重发生错误：" + res)
-    #             print("无限循环退出")
-    #             break
-    #     except Exception as e:
-    #         print(f"ocr_recent_wechat_image发生捕获到未处理异常: {e}")
-    #         print("无限循环继续")
-    #
-    #     try:
-    #         res = ocr_recent_weibo_xueqiu_image()
-    #         if (res != "success"):
-    #             print("ocr_recent_weibo_xueqiu_image严重发生错误：" + res)
-    #             print("无限循环退出")
-    #             break
-    #     except Exception as e:
-    #         print(f"ocr_recent_weibo_xueqiu_image发生捕获到未处理异常: {e}")
-    #         print("无限循环继续")
-    #
-    #     print("waiting...")
-    #     time.sleep(3)
+        try:
+            res = res = ocr_recent_WXPublic_image()
+            if (res != "success"):
+                print("ocr_recent_WXPublic_image严重发生错误：" + res)
+                print("无限循环退出")
+        except Exception as e:
+            print(f"ocr_recent_WXPublic_image发生捕获到未处理异常: {e}")
+            print("无限循环继续")
+
+        print("main_OCR is running(waiting)...")
+        time.sleep(3)
 
 

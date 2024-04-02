@@ -271,7 +271,11 @@ if __name__ == '__main__':
         exit(0)
 
     while True:
+
         try:
+            ControlCenterTools.report_to_ControlCenter("main_OCR", "run ocr_recent_wechat_image()...")
+            time.sleep(1)
+
             res = ocr_recent_wechat_image()
             if (res != "success"):
                 print("ocr_recent_wechat_image严重发生错误：" + res)
@@ -282,6 +286,9 @@ if __name__ == '__main__':
             print("无限循环继续")
 
         try:
+            ControlCenterTools.report_to_ControlCenter("main_OCR", "run ocr_recent_weibo_xueqiu_image()...")
+            time.sleep(1)
+
             res = ocr_recent_weibo_xueqiu_image()
             if (res != "success"):
                 print("ocr_recent_weibo_xueqiu_image严重发生错误：" + res)
@@ -292,6 +299,8 @@ if __name__ == '__main__':
             print("无限循环继续")
 
         try:
+            ControlCenterTools.report_to_ControlCenter("main_OCR", "run ocr_recent_WXPublic_image()...")
+            time.sleep(1)
             res = res = ocr_recent_WXPublic_image()
             if (res != "success"):
                 print("ocr_recent_WXPublic_image严重发生错误：" + res)
@@ -301,8 +310,6 @@ if __name__ == '__main__':
             print("无限循环继续")
 
         ControlCenterTools.report_to_ControlCenter("main_OCR", "running(waiting)...")
-
-        print("main_OCR is running(waiting)...")
         time.sleep(3)
 
 

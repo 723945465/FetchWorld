@@ -4,6 +4,8 @@ import json
 import mysql.connector
 from mysql.connector import Error
 
+import CommonDbOpTools
+
 db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
 db_user= 'chris'
@@ -125,9 +127,22 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
             try:
                 temp_info_analysis_status_dict = json.loads(temp_info[11])
             except json.JSONDecodeError as e:
-                print(f"Error parsing JSON when analysis topic keywords. e: {e}, id:{temp_info_id}")
+                print(f"Error parsing info_analysis_status_dict to JSON when analysis topic keywords. e: {e}")
+                print(f"set this info id:{temp_info_id} as bad..")
+                CommonDbOpTools.set_bad_hismsg(temp_info_id)
+
         temp_info_abstract = '' if temp_info[12] is None else temp_info[12]
-        temp_info_match_topic = [] if temp_info[13] is None else json.loads(temp_info[13])
+        temp_info_match_topic = []
+        if temp_info[13] is None or temp_info[13] == "":
+            temp_info_match_topic = []
+        else:
+            try:
+                temp_info_analysis_status_dict = json.loads(temp_info[13])
+            except json.JSONDecodeError as e:
+                print(f"Error parsing info_match_topic to JSON when analysis topic keywords. e: {e}")
+                print(f"set this info id:{temp_info_id} as bad..")
+                CommonDbOpTools.set_bad_hismsg(temp_info_id)
+
         match_condition_dict = {}
         match_score = 0
         matched_keyword_list = []

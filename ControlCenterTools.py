@@ -23,7 +23,7 @@ def report_to_ControlCenter(reportService, reportStr):
     report_data = {}
     report_data["reportService"] = reportService
     report_data["reportStr"] = reportStr
-    report_data["reportTime"] = str(datetime.now())
+    report_data["reportTime"] = str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     try:
         response = requests.post(f"{ControlCenterUrl}/report", json=report_data, timeout=timeout_seconds)
@@ -58,5 +58,3 @@ if __name__ == "__main__":
     report_to_ControlCenter("main_OCR","haha")
     report_to_ControlCenter("main_TopicKeywordsAnalysis", "haha")
     report_to_ControlCenter("main_Commit_tosend", "haha")
-
-    test_get_status()

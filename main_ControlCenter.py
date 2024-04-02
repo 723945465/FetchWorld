@@ -2,12 +2,24 @@ from flask import Flask, request, jsonify
 from bs4 import BeautifulSoup
 import mysql.connector
 from mysql.connector import Error
+import json
 
 app = Flask(__name__)
 db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
 db_user= 'chris'
 db_password= '19871127ldld'
+
+
+ServiceStatusDict = {
+    "WXPublicWebApi": ["2024-04-02 13:29:40","last message"],
+    "WeiboXueqiuFetch": ["2024-04-02 13:29:40","last message"],
+    "WechatPicAndFile": ["2024-04-02 13:29:40","last message"],
+    "main_OCR": ["2024-04-02 13:29:40","last message"],
+    "main_TopicKeywordsAnalysis": ["2024-04-02 13:29:40","last message"],
+    "main_Commit_tosend": ["2024-04-02 13:29:40","last message"],
+    "SendNewMsg": ["2024-04-02 13:29:40","last message"],
+}
 
 
 @app.route('/report', methods=['POST'])
@@ -17,21 +29,30 @@ def receive_report():
     :return: 返回一个确认接收的响应。
     """
     data = request.get_json()  # 获取JSON格式的报告数据
-    if data and 'report' in data:
-        print("Received report:", data['report'])
+    if (data and 'reportService' in data
+            and 'reportStr' in data
+            and 'reportTime' in data):
+        reportService = data['reportService']
+        reportStr = data['reportStr']
+        reportTime = data['reportTime']
+
+        if reportService not in ServiceStatusDict:
+            print(f"receive_report()收到错误信息：{str(data)}")
+            return jsonify({'status': 'error', 'message': 'Invalid report data'}), 400
+
+        ServiceStatusDict[reportService] = [str(reportTime),str(reportStr)]
+        print(ServiceStatusDict)
+
         return jsonify({'status': 'success', 'message': 'Report received'}), 200
     else:
+        print(f"receive_report()收到错误信息：{str(data)}")
         return jsonify({'status': 'error', 'message': 'Invalid report data'}), 400
+
 
 @app.route('/run', methods=['GET'])
 def run_status():
-    """
-    这个接口用于向外界请求并输出运行情况。
-    :return: 返回当前运行状态的响应。
-    """
-    # 这里只是一个示例，实际中可能需要向其他服务发送请求并获取状态
-    run_status = {'cpu_usage': 60, 'memory_usage': 80, 'disk_usage': 50}
-    return jsonify(run_status), 200
+    json_str = json.dumps(ServiceStatusDict, indent=4)
+    return jsonify(json_str), 200
 
 
 if __name__ == '__main__':

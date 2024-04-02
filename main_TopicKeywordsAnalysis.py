@@ -3,7 +3,7 @@ import mysql.connector
 from mysql.connector import Error
 import TopicKeywordsLists
 import time
-
+import ControlCenterTools
 
 db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
@@ -40,4 +40,5 @@ if __name__ == '__main__':
         time.sleep(3)
         for tempTopic in TopicList:
             TopicKwordsAnalysis.analyze_recent_articles(tempTopic)
+        ControlCenterTools.report_to_ControlCenter("main_TopicKeywordsAnalysis", "running(waiting)...")
         time.sleep(3)

@@ -5,6 +5,7 @@ import mysql.connector
 from mysql.connector import Error
 import time
 import SQLStrPass
+import ControlCenterTools
 
 
 db_host= '114.55.128.212'
@@ -257,7 +258,7 @@ def commit_hismsg_tosend(LengthThreshold):
     except Error as e:
         print(f"Error while connecting to MySQL: {e}")
         print(f"SQL STRING: {query}")
-        return []  # 发生错误时返回空
+        return "##Error## "+ f"in commit_hismsg_tosend() Error while connecting to MySQL: {e}" + f"SQL STRING: {query}"
     finally:
         # 关闭数据库连接
         if connection.is_connected():
@@ -306,6 +307,7 @@ def commit_hismsg_tosend(LengthThreshold):
             else:
                 print("未识别的temp_info_type：" + temp_info_type)
 
+    return "success"
 
 
 if __name__ == '__main__':
@@ -317,4 +319,5 @@ if __name__ == '__main__':
         LengthThreshold = 8 + len(str(TopicList))
         commit_hismsg_tosend(LengthThreshold)
 
+        ControlCenterTools.report_to_ControlCenter("main_Commit_tosend","running(waiting)...")
         time.sleep(3)

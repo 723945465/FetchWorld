@@ -10,6 +10,7 @@ import SQLStrPass
 import time
 import WXPublicContentParse
 import CommonDbOpTools
+import ControlCenterTools
 
 db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
@@ -298,6 +299,8 @@ if __name__ == '__main__':
         except Exception as e:
             print(f"ocr_recent_WXPublic_image发生捕获到未处理异常: {e}")
             print("无限循环继续")
+
+        ControlCenterTools.report_to_ControlCenter("main_OCR", "running(waiting)...")
 
         print("main_OCR is running(waiting)...")
         time.sleep(3)

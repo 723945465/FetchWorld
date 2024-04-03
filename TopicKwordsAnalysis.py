@@ -43,7 +43,7 @@ def construct_topic_keywords(topic):
             connection.close()
 
 def analyze_one_article(article_text, Topic_keywords_dict_list, Topic_name):
-    # 文本预处理
+    # 文本预处理,字母全部换小写
     article_text = article_text.lower()
     article_text = re.sub(r'[%s]' % re.escape(string.punctuation), '', article_text)
 
@@ -225,7 +225,9 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
 # print(match_score)
 
 if __name__ == '__main__':
-   analyze_recent_articles('量化')
-   analyze_recent_articles('小米汽车')
+    res= construct_topic_keywords('量化')
+    print(res)
+   # analyze_recent_articles('量化')
+   # analyze_recent_articles('小米汽车')
 
 

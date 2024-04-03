@@ -69,7 +69,8 @@ def newInsertTopic(Topic_name, Topic_keywords):
 #             cursor.close()
 #             connection.close()
 
-
+#如果数据库中已经存在Topic_name的主题关键词，全部删除，然后重新插入。
+#可以用于更新主题关键词，也可以直接用于插入新的主题关键词
 def UpdateTopic(Topic_name, Topic_keywords):
     try:
         # 连接到MySQL数据库
@@ -102,3 +103,5 @@ if __name__ == '__main__':
     UpdateTopic('小米汽车', TopicKeywordsLists.xiaomi_car_keywords)
     UpdateTopic('低空经济', TopicKeywordsLists.low_altitude_economy_keywords)
     UpdateTopic('通用价值点', TopicKeywordsLists.common_value_keywords)
+    UpdateTopic('先锋热点', TopicKeywordsLists.HotPoint_keywords)
+    UpdateTopic('量化', TopicKeywordsLists.quantitative_trading_keywords)

@@ -10,6 +10,8 @@ def analysis_DWH_image_text(dwh_reletve_path,TopicName):
 def analysis_local_image_text(local_image_path):
 
     ocr_res = OCR_PaddleOCRTools.PicToText_PaddleOCR(local_image_path)
+    print("OCR结果：")
+    print(ocr_res)
     if "##Error##" in ocr_res:
         return ocr_res
 
@@ -35,7 +37,7 @@ def analysis_local_image_text(local_image_path):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    res = analysis_local_image_text("E:\\1.png")
+    res = analysis_local_image_text("E:\\1.jpg")
     if "success" not in res:
         print(f"error: {res}")
     # picpath = r"C:\1710483238241.jpg"

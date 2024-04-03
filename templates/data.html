@@ -1,0 +1,96 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Data View</title>-->
+<!--</head>-->
+<!--<body>-->
+    <!--<h1>Data List</h1>-->
+
+    <!--&lt;!&ndash; 筛选表单 &ndash;&gt;-->
+    <!--<form action="" method="get">-->
+        <!--<label for="create_time">Create Time:</label>-->
+        <!--<input type="text" id="create_time" name="create_time" value="{{ request.args.create_time }}">-->
+
+        <!--<label for="info_type">Info Type:</label>-->
+        <!--<input type="text" id="info_type" name="info_type" value="{{ request.args.info_type }}">-->
+
+        <!--<label for="info_match_topic">Match Topic:</label>-->
+        <!--<input type="text" id="info_match_topic" name="info_match_topic" value="{{ request.args.info_match_topic }}">-->
+
+        <!--<input type="submit" value="Filter">-->
+    <!--</form>-->
+
+    <!--&lt;!&ndash; 数据展示 &ndash;&gt;-->
+    <!--<table border="1">-->
+        <!--<tr>-->
+            <!--<th>ID</th>-->
+            <!--<th>Create Time</th>-->
+            <!--<th>Info Source</th>-->
+            <!--&lt;!&ndash; 其他字段... &ndash;&gt;-->
+        <!--</tr>-->
+        <!--{% for row in data %}-->
+        <!--<tr>-->
+            <!--<td>{{ row.id }}</td>-->
+            <!--<td>{{ row.create_time }}</td>-->
+            <!--<td>{{ row.info_source }}</td>-->
+            <!--&lt;!&ndash; 其他字段... &ndash;&gt;-->
+        <!--</tr>-->
+        <!--{% endfor %}-->
+    <!--</table>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Data View</title>
+    <!-- 如果有CSS样式表，可以在这里添加链接 -->
+</head>
+<body>
+    <h1>Data List</h1>
+
+    <!-- 筛选表单 -->
+    <form action="{{ url_for('data') }}" method="get">
+        <label for="create_time">Create Time:</label>
+        <input type="text" id="create_time" name="create_time" value="{{ request.args.create_time }}" placeholder="YYYY-MM-DD">
+
+        <label for="info_type">Info Type:</label>
+        <input type="text" id="info_type" name="info_type" value="{{ request.args.info_type }}">
+
+        <label for="info_match_topic">Match Topic:</label>
+        <input type="text" id="info_match_topic" name="info_match_topic" value="{{ request.args.info_match_topic }}">
+
+        <!-- 新增时间范围筛选下拉菜单 -->
+        <label for="time_range">Time Range:</label>
+        <select id="time_range" name="time_range">
+            <option value="">Select Time Range</option>
+            <option value="today" {{ 'selected' if request.args.time_range == 'today' }}>Today</option>
+            <option value="two_days" {{ 'selected' if request.args.time_range == 'two_days' }}>Last Two Days</option>
+            <option value="one_week" {{ 'selected' if request.args.time_range == 'one_week' }}>Last Week</option>
+        </select>
+
+        <input type="submit" value="Filter">
+    </form>
+
+    <!-- 数据展示 -->
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Create Time</th>
+            <th>Info Source</th>
+            <!-- 其他字段... -->
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.create_time }}</td>
+            <td>{{ row.info_source }}</td>
+            <!-- 其他字段... -->
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

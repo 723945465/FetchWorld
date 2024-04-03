@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hismsg_info Data</title>
+    <script src="https://cdn.sheetjs.com/xlsx-0.18.1/package/dist/xlsx.full.min.js"></script>
+    <script>
+ function exportToExcel() {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  var data = [];
+  for (var i = 0; i < checkboxes.length; i++) {
+    var row = checkboxes[i].parentNode.parentNode;
+    var rowData = [
+      row.cells[1].textContent,
+      row.cells[2].textContent,
+      row.cells[3].textContent
+    ];
+    data.push(rowData);
+    alert(data);
+  }
+
+  var worksheet = XLSX.utils.aoa_to_sheet([["create_time", "info_source", "info_author_name"], ...data]);
+  var workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+  var excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+  saveAsExcelFile(excelBuffer, "C:\\1.xlsx");
+}
+
+function saveAsExcelFile(buffer, fileUrl) {
+  var blob = new Blob([buffer], { type: "application/octet-stream" });
+  var link = document.createElement("a");
+  link.href = window.URL.createObjectURL(blob);
+  link.download = fileUrl.split("/").pop();
+  link.click();
+}
+    </script>
+  </head>
+  <body>
+    <button onclick="exportToExcel()">Export to Excel</button>
+    <h1>hismsg_info Data</h1>
+    <form method="GET" action="/">
+      <label for="create_time">Create Time:</label>
+      <input type="text" id="create_time" name="create_time">
+      <label for="info_type">Info Type:</label>
+      <input type="text" id="info_type" name="info_type">
+      <label for="info_match_topic">Info Match Topic:</label>
+      <input type="text" id="info_match_topic" name="info_match_topic">
+      <input type="submit" value="Filter">
+    </form>
+    <table>
+      <tr>
+        <th>Select</th>
+        {% for col in rows[0].keys() %}
+        <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+      {% for row in rows %}
+      <tr>
+        <td><input type="checkbox" value="{{ row[0] }}"></td>
+        {% for value in row.values() %}
+        <td>{{ value }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </table>
+
+  </body>
+</html>

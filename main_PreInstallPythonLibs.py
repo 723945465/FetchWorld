@@ -8,7 +8,7 @@ import os
 required_libraries = [
     'emoji', #表情包字符
     'ftplib', #FTP
-    'mysql-connector-python', #mysql
+    'mysql-connector-python', 'pymysql', #mysql
     'flask', #flask WebApi
     'numpy', 'pandas', 'matplotlib', 'seaborn',  # 数据处理和可视化
     'beautifulsoup4', 'requests', 'selenium',  # 网络数据获取和处理

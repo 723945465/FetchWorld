@@ -103,6 +103,7 @@ DATABASE_CONFIG = {
 
 import os
 from flask import Flask, render_template, request
+import datetime
 
 
 app = Flask(__name__)
@@ -110,16 +111,27 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
-
-    create_time = request.args.get('create_time')
+    create_time_filter = request.args.get('create_time_filter')
     info_type = request.args.get('info_type')
     info_match_topic = request.args.get('info_match_topic')
 
-    query = "SELECT create_time, info_source , info_author_name , info_type , info_title ,info_content , info_internet_address, info_match_topic FROM hismsg_info"
+    query = "SELECT create_time, info_source , info_author_name , info_type , info_title ,info_content , info_internet_address, info_match_topic  FROM hismsg_info"
     filters = []
-    if create_time:
-        filters.append(f"create_time LIKE '%{create_time}%'")
+
+    if create_time_filter:
+        current_date = datetime.date.today()
+        if create_time_filter == 'today':
+            filters.append(f"DATE(create_time) = '{current_date}'")
+        elif create_time_filter == 'two_days':
+            two_days_ago = current_date - datetime.timedelta(days=2)
+            filters.append(f"DATE(create_time) BETWEEN '{two_days_ago}' AND '{current_date}'")
+        elif create_time_filter == 'one_week':
+            one_week_ago = current_date - datetime.timedelta(days=7)
+            filters.append(f"DATE(create_time) BETWEEN '{one_week_ago}' AND DATE_ADD('{current_date}', INTERVAL 1 DAY)")
+        elif create_time_filter == 'one_month':
+            one_month_ago = current_date - datetime.timedelta(days=30)
+            filters.append(f"DATE(create_time) BETWEEN '{one_month_ago}' AND DATE_ADD('{current_date}', INTERVAL 1 DAY)")
+
     if info_type:
         filters.append(f"info_type = '{info_type}'")
     if info_match_topic:

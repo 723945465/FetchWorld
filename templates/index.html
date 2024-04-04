@@ -1,10 +1,112 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>hismsg_info Data</title>
     <script src="https://cdn.sheetjs.com/xlsx-0.18.1/package/dist/xlsx.full.min.js"></script>
-    <script>
- function exportToExcel() {
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 20px;
+        background-color: #f4f6f9;
+      }
+      h1 {
+        color: #16325c;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      .data-container {
+        display: flex;
+        flex-direction: column;
+      }
+      .data-header, .data-row {
+        display: flex;
+        border-bottom: 1px solid #cfd7e6;
+        padding: 12px 0;
+      }
+      .data-header div, .data-row div {
+        padding: 12px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        font-size: 16px;
+        color: #16325c;
+        flex-grow: 1; /* 设置弹性，以确保等宽分布 */
+      }
+      .data-header-info_content div, .data-row-info_content div{
+        flex-grow: 2; /* 设置弹性为2，占据屏幕宽度的一半 */
+        overflow-y: auto;
+      }
+      button {
+        padding: 8px 16px;
+        background-color: #2a69dc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+    </style>
+</head>
+<body>
+
+<button onclick="exportToExcel()">Export to Excel</button>
+<h1>hismsg_info Data</h1>
+<form method="GET" action="/">
+    <label for="create_time_filter">Create Time Filter:</label>
+    <select id="create_time_filter" name="create_time_filter">
+        <option value="">All</option>
+        <option value="today">Today</option>
+        <option value="two_days">Within 2 Days</option>
+        <option value="one_week">Within 1 Week</option>
+        <option value="one_month">Within 1 Month</option>
+    </select>
+    <label for="info_type">Info Type:</label>
+    <input type="text" id="info_type" name="info_type">
+    <label for="info_match_topic">Info Match Topic:</label>
+    <input type="text" id="info_match_topic" name="info_match_topic">
+    <input type="submit" value="Filter">
+</form>
+<div class="data-container">
+  <div class="data-header">
+    <div>Select</div>
+    <div>Create Time</div>
+    <div>Info Source</div>
+    <div>Info Author Name</div>
+    <div>Info Type</div>
+    <div>Info Title</div>
+    <div class="data-header-info_content">Info Content</div>
+    <div>Info Internet Address</div>
+    <div>Info Match Topic</div>
+  </div>
+  {% if rows %}
+  {% for row in rows %}
+  <div class="data-row">
+    <div><input type="checkbox" value="{{ row[0] }}"></div>
+    {% for key, value in row.items() %}
+    <div class="{{ key }}">
+      {% if key == 'info_internet_address' %}
+        {% if value and (value.startswith('http://') or value.startswith('https://')) %}
+          <a href="{{ value }}" target="_blank">Open Link</a>
+        {% endif %}
+      {% elif key == 'info_content' %}
+        {% if value %}
+          <div>{{ value }}</div>
+        {% endif %}
+      {% else %}
+        {{ value }}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+  {% else %}
+  <p>No data to display.</p>
+  {% endif %}
+</div>
+
+<script>
+function exportToExcel() {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
   var data = [];
   for (var i = 0; i < checkboxes.length; i++) {
@@ -15,7 +117,6 @@
       row.cells[3].textContent
     ];
     data.push(rowData);
-    alert(data);
   }
 
   var worksheet = XLSX.utils.aoa_to_sheet([["create_time", "info_source", "info_author_name"], ...data]);
@@ -33,36 +134,7 @@ function saveAsExcelFile(buffer, fileUrl) {
   link.download = fileUrl.split("/").pop();
   link.click();
 }
-    </script>
-  </head>
-  <body>
-    <button onclick="exportToExcel()">Export to Excel</button>
-    <h1>hismsg_info Data</h1>
-    <form method="GET" action="/">
-      <label for="create_time">Create Time:</label>
-      <input type="text" id="create_time" name="create_time">
-      <label for="info_type">Info Type:</label>
-      <input type="text" id="info_type" name="info_type">
-      <label for="info_match_topic">Info Match Topic:</label>
-      <input type="text" id="info_match_topic" name="info_match_topic">
-      <input type="submit" value="Filter">
-    </form>
-    <table>
-      <tr>
-        <th>Select</th>
-        {% for col in rows[0].keys() %}
-        <th>{{ col }}</th>
-        {% endfor %}
-      </tr>
-      {% for row in rows %}
-      <tr>
-        <td><input type="checkbox" value="{{ row[0] }}"></td>
-        {% for value in row.values() %}
-        <td>{{ value }}</td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
-    </table>
+</script>
 
-  </body>
+</body>
 </html>

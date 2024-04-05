@@ -16,26 +16,36 @@
         margin-bottom: 20px;
       }
       .data-container {
-        display: flex;
-        flex-direction: column;
+        display: table;
+        width: 100%;
+        table-layout: fixed;
       }
       .data-header, .data-row {
-        display: flex;
-        border-bottom: 1px solid #cfd7e6;
-        padding: 12px 0;
+        display: table-row;
       }
       .data-header div, .data-row div {
+        display: table-cell;
         padding: 12px;
         overflow-wrap: break-word;
         word-wrap: break-word;
         word-break: break-word;
         font-size: 16px;
         color: #16325c;
-        flex-grow: 1; /* 设置弹性，以确保等宽分布 */
       }
-      .data-header-info_content div, .data-row-info_content div{
-        flex-grow: 2; /* 设置弹性为2，占据屏幕宽度的一半 */
-        overflow-y: auto;
+      .data-header div {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        border-bottom: 1px solid #cfd7e6;
+      }
+      .data-row div {
+        border-bottom: none;
+        cursor: pointer; /* 添加鼠标指针样式 */
+      }
+      .data-row-info_content div {
+        border-bottom: none;
+      }
+      .data-header-info_content, .data-row-info_content {
+        width: 50%;
       }
       button {
         padding: 8px 16px;
@@ -45,6 +55,36 @@
         border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
+      }
+      .data-row:nth-child(even) {
+        background-color: #e8e8e8; /* 设置偶数行背景色 */
+      }
+      .data-row:nth-child(odd) {
+        background-color: #ffffff; /* 设置奇数行背景色 */
+      }
+      .notification {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        display: none;
+        z-index: 1000;
+      }
+      /* 修改Select、Info Source的宽度 */
+      .data-header-select,
+      .data-row-select,
+      .data-header-info_source,
+      .data-row-info_source {
+        width: 5%;
+      }
+      /* 调整Info Match Topic的字体大小 */
+      .data-header-info_match_topic,
+      .data-row-info_match_topic {
+        font-size: 14px;
       }
     </style>
 </head>
@@ -69,29 +109,29 @@
 </form>
 <div class="data-container">
   <div class="data-header">
-    <div>Select</div>
+    <div class="data-header-select">Select</div>
     <div>Create Time</div>
-    <div>Info Source</div>
+    <div class="data-header-info_source">Info Source</div>
     <div>Info Author Name</div>
     <div>Info Type</div>
     <div>Info Title</div>
     <div class="data-header-info_content">Info Content</div>
     <div>Info Internet Address</div>
-    <div>Info Match Topic</div>
+    <div class="data-header-info_match_topic">Info Match Topic</div>
   </div>
   {% if rows %}
   {% for row in rows %}
   <div class="data-row">
-    <div><input type="checkbox" value="{{ row[0] }}"></div>
+    <div class="data-row-select"><input type="checkbox" value="{{ row[0] }}"></div>
     {% for key, value in row.items() %}
-    <div class="{{ key }}">
+    <div class="data-row-{{ key }}">
       {% if key == 'info_internet_address' %}
         {% if value and (value.startswith('http://') or value.startswith('https://')) %}
-          <a href="{{ value }}" target="_blank">Open Link</a>
+          <a href="{{ value }}" target="_blank">链接</a>
         {% endif %}
       {% elif key == 'info_content' %}
         {% if value %}
-          <div>{{ value }}</div>
+          <div onclick="copyToClipboard(this)">{{ value }}</div> <!-- 添加点击事件调用函数 -->
         {% endif %}
       {% else %}
         {{ value }}
@@ -104,6 +144,8 @@
   <p>No data to display.</p>
   {% endif %}
 </div>
+
+<div class="notification" id="notification"></div> <!-- 添加提醒框 -->
 
 <script>
 function exportToExcel() {
@@ -133,6 +175,26 @@ function saveAsExcelFile(buffer, fileUrl) {
   link.href = window.URL.createObjectURL(blob);
   link.download = fileUrl.split("/").pop();
   link.click();
+}
+
+function copyToClipboard(element) {
+  var text = element.textContent;
+  navigator.clipboard.writeText(text)
+    .then(function() {
+      showNotification('Text copied to clipboard: ' + text);
+    })
+    .catch(function(error) {
+      console.error('Unable to copy text to clipboard: ', error);
+    });
+}
+
+function showNotification(message) {
+  var notification = document.getElementById('notification');
+  notification.textContent = message;
+  notification.style.display = 'block';
+  setTimeout(function() {
+    notification.style.display = 'none';
+  }, 1000); // 1秒后自动隐藏
 }
 </script>
 

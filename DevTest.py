@@ -29,7 +29,7 @@ def index():
     info_type = request.args.get('info_type')
     info_match_topic = request.args.get('info_match_topic')
 
-    query = "SELECT create_time, info_source , info_author_name , info_type , info_title ,info_content , info_internet_address, info_match_topic  FROM hismsg_info"
+    query = "SELECT id, create_time, info_source , info_author_name , info_type , info_title ,info_content , info_internet_address, info_match_topic  FROM hismsg_info"
     filters = []
 
     if create_time_filter:
@@ -68,6 +68,13 @@ def index():
     html_res = render_template('index.html', rows=rows)
     print(html_res)
     return html_res
+
+
+@app.route('/timeline', methods=['POST'])
+def timeline():
+    res_string = request.data.decode('utf-8')  # 获取请求的 body 中的数据
+    print(res_string)
+    return res_string, 200
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -5,6 +5,7 @@ from mysql.connector import Error
 import SQLStrPass
 import WXPublicURLTools
 import WXPublicContentParse
+import ControlCenterTools
 
 app = Flask(__name__)
 db_host= '114.55.128.212'
@@ -52,7 +53,10 @@ def insert_article(name_of_acc, title, content, url):
             # 执行SQL语句
             cursor.execute(query, (name_of_acc, title, content, url))
             connection.commit()
-            print("新公众号插入成功： \n" + ("" if name_of_acc is None else name_of_acc) + " : " + ("" if title is None else title) )
+            control_msg = "新公众号插入成功： \n" + ("" if name_of_acc is None else name_of_acc) + " : " + ("" if title is None else title)
+            print(control_msg)
+            ControlCenterTools.report_to_ControlCenter("WXPublicWebApi", control_msg)
+
     except Error as e:
         print(f"Error while connecting to MySQL: {e}")
         print(f"SQL STRING: {query}")

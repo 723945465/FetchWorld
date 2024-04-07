@@ -91,6 +91,7 @@
 <body>
 
 <button onclick="exportToExcel()">Export to Excel</button>
+<button onclick="analyzeTimeline()">时间轴分析</button> <!-- 添加时间轴分析按钮 -->
 <h1>hismsg_info Data</h1>
 <form method="GET" action="/">
     <label for="create_time_filter">Create Time Filter:</label>
@@ -109,7 +110,7 @@
 </form>
 <div class="data-container">
   <div class="data-header">
-    <div class="data-header-select">Select</div>
+    <div class="data-header-select"><input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)"></div>
     <div>Create Time</div>
     <div class="data-header-info_source">Info Source</div>
     <div>Info Author Name</div>
@@ -122,8 +123,9 @@
   {% if rows %}
   {% for row in rows %}
   <div class="data-row">
-    <div class="data-row-select"><input type="checkbox" value="{{ row[0] }}"></div>
+    <div class="data-row-select"><input type="checkbox" value="{{ row['id'] }}" onchange="showSelectedIds()"></div>
     {% for key, value in row.items() %}
+    {% if key != 'id' %}
     <div class="data-row-{{ key }}">
       {% if key == 'info_internet_address' %}
         {% if value and (value.startswith('http://') or value.startswith('https://')) %}
@@ -137,6 +139,7 @@
         {{ value }}
       {% endif %}
     </div>
+    {% endif %}
     {% endfor %}
   </div>
   {% endfor %}
@@ -148,6 +151,32 @@
 <div class="notification" id="notification"></div> <!-- 添加提醒框 -->
 
 <script>
+var selectedIds = []; // 保存选中行的id
+
+function analyzeTimeline() {
+  var checkboxes = document.querySelectorAll('.data-row-select input[type="checkbox"]');
+  selectedIds = []; // 清空已选中的 id 数组
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      selectedIds.push(checkboxes[i].value); // 如果复选框被选中，则将其对应的 id 加入数组
+    }
+  }
+
+  var selectedIdsString = selectedIds.join(','); // 使用逗号分隔的id组成的字符串
+  fetch('/timeline', {
+    method: 'POST',
+    body: selectedIdsString // 向Flask的/timeline发送用','分割的id组成的字符串
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert(data); // 弹出收到的数据
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+
 function exportToExcel() {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
   var data = [];
@@ -195,6 +224,30 @@ function showNotification(message) {
   setTimeout(function() {
     notification.style.display = 'none';
   }, 1000); // 1秒后自动隐藏
+}
+
+function toggleSelectAll(checkbox) {
+  var checkboxes = document.querySelectorAll('.data-row-select input[type="checkbox"]');
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].checked = checkbox.checked;
+    if (checkbox.checked && !selectedIds.includes(checkboxes[i].value)) {
+      selectedIds.push(checkboxes[i].value); // 添加选中的行的id到数组
+    } else if (!checkbox.checked && selectedIds.includes(checkboxes[i].value)) {
+      selectedIds.splice(selectedIds.indexOf(checkboxes[i].value), 1); // 从数组中移除取消选中的行的id
+    }
+  }
+}
+
+function showSelectedIds() {
+  var checkboxes = document.querySelectorAll('.data-row-select input[type="checkbox"]');
+  selectedIds = []; // 清空已选中的 id 数组
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      selectedIds.push(checkboxes[i].value); // 如果复选框被选中，则将其对应的 id 加入数组
+    }
+  }
+  var selectedIdsString = selectedIds.join(', '); // 使用逗号分隔的 id 组成的字符串
+  alert("Selected row IDs: " + selectedIdsString); // 弹出显示选中行的 id 的弹窗
 }
 </script>
 

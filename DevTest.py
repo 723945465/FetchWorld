@@ -72,9 +72,11 @@ def index():
 
 @app.route('/timeline', methods=['POST'])
 def timeline():
-    res_string = request.data.decode('utf-8')  # 获取请求的 body 中的数据
-    print(res_string)
-    return res_string, 200
+    ids_str = request.data.decode('utf-8')  # 获取请求的 body 中的数据
+    print(ids_str)
+    query = f"""SELECT GROUP_CONCAT(info_content SEPARATOR ' ') FROM hismsg_info WHERE id IN ({ids_str});"""
+    print(query)
+    return query, 200
 
 if __name__ == '__main__':
     app.run(debug=True)

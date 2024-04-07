@@ -94,7 +94,7 @@ common_value_keywords = [
 ]
 
 # Topic = 生物制造
-HotPoint_keywords = [
+Biomanufacturing_keywords = [
     {'keyword': '生物制造', 'weight': 10},
     {'keyword': '合成生物', 'weight': 10},
     {'keyword': 'bio-made', 'weight': 10},
@@ -106,7 +106,8 @@ HotPoint_keywords = [
 # Topic = 先锋热点
 HotPoint_keywords = [
     {'keyword': 'p70', 'weight': 10},
-    {'keyword': '地震', 'weight': 10},
+    {'keyword': '董宇辉', 'weight': 10},
+    {'keyword': '与辉同行', 'weight': 10},
     {'keyword': '人形机器人', 'weight': 10},
 ]
 

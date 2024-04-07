@@ -104,4 +104,5 @@ if __name__ == '__main__':
     UpdateTopic('低空经济', TopicKeywordsLists.low_altitude_economy_keywords)
     UpdateTopic('通用价值点', TopicKeywordsLists.common_value_keywords)
     UpdateTopic('先锋热点', TopicKeywordsLists.HotPoint_keywords)
+    UpdateTopic('生物制造', TopicKeywordsLists.Biomanufacturing_keywords)
     UpdateTopic('量化', TopicKeywordsLists.quantitative_trading_keywords)

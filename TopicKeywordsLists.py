@@ -21,6 +21,7 @@ low_altitude_economy_keywords = [
     {'keyword': '低空医疗', 'weight': 10},
     {'keyword': '低空航线', 'weight': 10},
     {'keyword': '低空出行', 'weight': 10},
+    {'keyword': '低小慢', 'weight': 10},
     {'keyword': '垂直起降', 'weight': 8},
     {'keyword': '空中交通', 'weight': 8},
     {'keyword': '低空飞行器', 'weight': 8},
@@ -109,6 +110,7 @@ HotPoint_keywords = [
     {'keyword': '董宇辉', 'weight': 10},
     {'keyword': '与辉同行', 'weight': 10},
     {'keyword': '人形机器人', 'weight': 10},
+    {'keyword': '固态电池', 'weight': 10},
 ]
 
 

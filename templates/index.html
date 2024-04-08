@@ -86,6 +86,31 @@
       .data-row-info_match_topic {
         font-size: 14px;
       }
+      #dataModal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        z-index: 1000;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        max-width: 80%;
+        max-height: 80%;
+        overflow-y: auto;
+      }
+      #closeModal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        color: #aaa;
+      }
+      #closeModal:hover {
+        color: #333;
+      }
     </style>
 </head>
 <body>
@@ -150,6 +175,11 @@
 
 <div class="notification" id="notification"></div> <!-- 添加提醒框 -->
 
+<div id="dataModal" style="display: none;"> <!-- 添加用于显示数据的弹框 -->
+  <span id="closeModal" onclick="closeModal()">Close</span> <!-- 添加关闭按钮 -->
+  <div id="modalContent"></div> <!-- 用于显示数据的内容区域 -->
+</div>
+
 <script>
 var selectedIds = []; // 保存选中行的id
 
@@ -169,7 +199,8 @@ function analyzeTimeline() {
   })
   .then(response => response.text())
   .then(data => {
-    alert(data); // 弹出收到的数据
+    document.getElementById('modalContent').innerHTML = data; // 将数据显示在指定的区域内
+    document.getElementById('dataModal').style.display = 'block'; // 显示弹框
   })
   .catch(error => {
     console.error('Error:', error);
@@ -248,6 +279,10 @@ function showSelectedIds() {
   }
   var selectedIdsString = selectedIds.join(', '); // 使用逗号分隔的 id 组成的字符串
   alert("Selected row IDs: " + selectedIdsString); // 弹出显示选中行的 id 的弹窗
+}
+
+function closeModal() {
+  document.getElementById('dataModal').style.display = 'none'; // 关闭弹框
 }
 </script>
 

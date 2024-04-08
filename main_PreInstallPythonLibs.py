@@ -6,6 +6,8 @@
 import os
 
 required_libraries = [
+    'jieba', #分词
+    'stylecloud', #词云
     'openai', #调用Kimi
     'emoji', #表情包字符
     'ftplib', #FTP

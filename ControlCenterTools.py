@@ -54,6 +54,7 @@ def report_to_ControlCenter(reportService, reportStr):
 
 
 if __name__ == "__main__":
-    report_to_ControlCenter("main_OCR","haha")
-    report_to_ControlCenter("main_TopicKeywordsAnalysis", "haha")
-    report_to_ControlCenter("main_Commit_tosend", "haha")
+    # report_to_ControlCenter("main_OCR","haha")
+    # report_to_ControlCenter("main_TopicKeywordsAnalysis", "haha")
+    # report_to_ControlCenter("main_Commit_tosend", "haha")
+    report_to_ControlCenter("ToutiaoBaiduTopicSearch","haha")

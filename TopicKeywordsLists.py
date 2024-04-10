@@ -6,6 +6,8 @@ xiaomi_car_keywords = [
     {'keyword': '小米汽车', 'weight': 10},
     {'keyword': 'su7', 'weight': 10},
     {'keyword': 'su 7', 'weight': 10},
+    {'keyword': 'su8', 'weight': 10},
+    {'keyword': 'su 8', 'weight': 10},
     {'keyword': '小米suv', 'weight': 10},
     {'keyword': '雷军', 'weight': 9},
     {'keyword': '雷总', 'weight': 9},

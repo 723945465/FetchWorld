@@ -16,6 +16,7 @@ ServiceStatusDict = {
     "WXPublicWebApi": ["2024-04-02 13:29:40","last message"],
     "WeiboXueqiuFetch": ["2024-04-02 13:29:40","last message"],
     "WechatPicAndFile": ["2024-04-02 13:29:40","last message"],
+    "ToutiaoBaiduTopicSearch": ["2024-04-02 13:29:40", "last message"],
     "main_OCR": ["2024-04-02 13:29:40","last message"],
     "main_TopicKeywordsAnalysis": ["2024-04-02 13:29:40","last message"],
     "main_Commit_tosend": ["2024-04-02 13:29:40","last message"],

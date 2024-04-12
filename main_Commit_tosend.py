@@ -12,10 +12,12 @@ db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
 db_user= 'chris'
 db_password= '19871127ldld'
+charset='utf8mb4'
+
 def getTopicList():
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
         if connection.is_connected():
             cursor = connection.cursor()
             # 查询数据库中是否存在相同的title或link
@@ -50,7 +52,7 @@ def keywords_list_to_string(keywordsList):
 def query_info_dwh_reletive_file_path(hismsg_id):
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
         if connection.is_connected():
             cursor = connection.cursor()
             # 查询数据库中是否存在相同的title或link
@@ -76,7 +78,7 @@ def commit_wx_chat_pic_tosend(hismsg_id, temp_info_author_name, topic_matched, k
     info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -119,7 +121,7 @@ def commit_wb_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matc
     info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -162,7 +164,7 @@ def commit_xq_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matc
     info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -204,7 +206,7 @@ def commit_wxpublic_tosend(hismsg_id, temp_info_author_name, temp_info_title, te
     info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -223,7 +225,6 @@ def commit_wxpublic_tosend(hismsg_id, temp_info_author_name, temp_info_title, te
             cursor.execute(sql)
             # 提交更改到数据库
             connection.commit()
-
     except Error as e:
         print(f"Error while connecting to MySQL: {e}")
         print(f"SQL STRING: {sql}")
@@ -234,11 +235,47 @@ def commit_wxpublic_tosend(hismsg_id, temp_info_author_name, temp_info_title, te
             cursor.close()
             connection.close()
 
+
+def commit_toutiaobaidu_search_tosend(hismsg_id, temp_info_time_author, temp_info_title, temp_info_url, topic_matched, keywords_str):
+
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            # 插入文字提示
+            content = ("【"+ str(topic_matched) +"："
+                       + str(keywords_str) + "】"
+                       +str(temp_info_time_author)+" 头百搜索新资讯： " + str(temp_info_title) + "  " + str(temp_info_url))
+            sql = """insert into to_send_info 
+            (where_to_send,has_send,msg_type,info_content,info_dwh_reletive_file_path) 
+            values ( %s,'no','文字', %s,'')"""
+            cursor.execute(sql, (topic_matched, content))
+            # 提交更改到数据库
+            connection.commit()
+
+            # 标记info_has_commit_tosend = yes
+            sql = f"""update hismsg_info set info_has_commit_tosend = 'yes' where id = {hismsg_id}"""
+            cursor.execute(sql)
+            # 提交更改到数据库
+            connection.commit()
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {sql}")
+        return False  # 发生错误时返回False
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+
+
 def commit_hismsg_tosend(LengthThreshold):
     info_rows = []
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
         if connection.is_connected():
             cursor = connection.cursor()
             query = f"""SELECT * FROM hismsg_info 
@@ -292,6 +329,8 @@ def commit_hismsg_tosend(LengthThreshold):
                 commit_xq_tosend(temp_info_id,temp_info_author_name,temp_info_url,topic,keywords_str)
             elif temp_info_type == "公众号推文":
                commit_wxpublic_tosend(temp_info_id,temp_info_author_name,temp_info_title,temp_info_url,topic,keywords_str)
+            elif temp_info_type == "头条百度资讯搜索":
+               commit_toutiaobaidu_search_tosend(temp_info_id,temp_info_author_name,temp_info_title,temp_info_url,topic,keywords_str)
             else:
                 print("未识别的temp_info_type：" + temp_info_type)
 
@@ -304,6 +343,8 @@ def commit_hismsg_tosend(LengthThreshold):
                 commit_xq_tosend(temp_info_id, temp_info_author_name, temp_info_url, 'unmatched', '')
             elif temp_info_type == "公众号推文":
                 commit_wxpublic_tosend(temp_info_id, temp_info_author_name, temp_info_title, temp_info_url, 'unmatched','')
+            elif temp_info_type == "头条百度资讯搜索":
+                commit_toutiaobaidu_search_tosend(temp_info_id, temp_info_author_name, temp_info_title, temp_info_url, 'unmatched','')
             else:
                 print("未识别的temp_info_type：" + temp_info_type)
 

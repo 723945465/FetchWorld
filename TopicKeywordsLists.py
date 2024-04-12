@@ -138,6 +138,7 @@ AIHPC_keywords = [
     {'keyword': 'kimi', 'weight': 10},
     {'keyword': 'chatglm', 'weight': 10},
     {'keyword': 'sora', 'weight': 10},
+
     # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},
     {'keyword': 'AI芯片', 'weight': 10},
@@ -147,13 +148,19 @@ AIHPC_keywords = [
     {'keyword': 'A100', 'weight': 10},
     {'keyword': 'B200', 'weight': 10},
     {'keyword': 'tpu', 'weight': 10},
+    {'keyword': 'AI加速卡', 'weight': 10},
+    {'keyword': 'Marvell', 'weight': 10},
+
     # 算通一体化
-    {'keyword': 'nv link', 'weight': 10},
+    {'keyword': 'NVLink', 'weight': 10},
     {'keyword': '硅光', 'weight': 10},
     {'keyword': 'silicon photonic', 'weight': 10},
     {'keyword': '光互联', 'weight': 10},
     {'keyword': 'optical interconnects', 'weight': 10},
     {'keyword': 'optical interconnect', 'weight': 10},
+    {'keyword': 'interconnect', 'weight': 10},
+    {'keyword': 'HB domain', 'weight': 10},
+    {'keyword': 'AI Factory', 'weight': 10},
     {'keyword': 'CPO', 'weight': 10},
     {'keyword': 'OCS', 'weight': 10},
     {'keyword': 'CXL', 'weight': 10},

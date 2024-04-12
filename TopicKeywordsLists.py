@@ -237,7 +237,7 @@ LidarADAS_keywords = [
 # Topic = 量化
 quantitative_trading_keywords = [
     {'keyword': '量化', 'weight': 10},
-    {'keyword': '对冲', 'weight': 10},
+    {'keyword': '程序化交易', 'weight': 10},
     {'keyword': '对冲基金', 'weight': 10},
     {'keyword': '量化私募', 'weight': 10},
     {'keyword': '量化基金', 'weight': 10},

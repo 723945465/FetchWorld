@@ -392,7 +392,7 @@ LidarADAS_baidunews_keywords = [
 # Topic = 量化 in 头条资讯
 quantitative_trading_toutiaonews_keywords = [
     # {'keyword': '量化', 'weight': 10},
-    {'keyword': '对冲', 'weight': 10},
+    {'keyword': '程序化交易', 'weight': 10},
     {'keyword': '对冲基金', 'weight': 10},
     {'keyword': '量化私募', 'weight': 10},
     {'keyword': '量化基金', 'weight': 10},
@@ -464,7 +464,7 @@ quantitative_trading_toutiaonews_keywords = [
 # Topic = 量化 in 百度资讯
 quantitative_trading_baidunews_keywords = [
     # {'keyword': '量化', 'weight': 10},
-    {'keyword': '对冲', 'weight': 10},
+    {'keyword': '程序化交易', 'weight': 10},
     {'keyword': '对冲基金', 'weight': 10},
     {'keyword': '量化私募', 'weight': 10},
     {'keyword': '量化基金', 'weight': 10},

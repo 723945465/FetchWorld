@@ -1,26 +1,6 @@
 # # 关键词列表,每个元素是一个字典,包含关键词和对应权重
 
 
-# Topic = 小米汽车 in 头条资讯
-xiaomi_car_toutiaonews_keywords = [
-    {'keyword': '小米汽车', 'weight': 10},
-    {'keyword': 'su7', 'weight': 10},
-    {'keyword': 'su8', 'weight': 10},
-    {'keyword': '小米suv', 'weight': 10},
-    {'keyword': 'V8S超级电机', 'weight': 8},
-    {'keyword': '江波龙', 'weight': 8},
-]
-
-# Topic = 小米汽车 in 百度资讯
-xiaomi_car_baidunews_keywords = [
-    {'keyword': '小米汽车', 'weight': 10},
-    {'keyword': 'su7', 'weight': 10},
-    {'keyword': 'su8', 'weight': 10},
-    {'keyword': '小米suv', 'weight': 10},
-    {'keyword': 'V8S超级电机', 'weight': 8},
-    {'keyword': '江波龙', 'weight': 8},
-]
-
 # Topic = 低空经济 in 头条资讯
 low_altitude_economy_toutiaonews_keywords = [
     {'keyword': '低空物流', 'weight': 10},
@@ -43,10 +23,17 @@ low_altitude_economy_baidunews_keywords = [
 
 # Topic = 商业航天 in 头条资讯
 commercial_space_toutiaonews_keywords = [
+    {'keyword': '商业航天', 'weight': 9.5},
+    {'keyword': '星舰', 'weight': 10},
+    {'keyword': 'star ship', 'weight': 10},
+    {'keyword': '星链', 'weight': 9.5},
+    {'keyword': 'star link', 'weight': 10},
+    {'keyword': '猎鹰火箭', 'weight': 10},
+    {'keyword': '猎鹰9号', 'weight': 10},
+    {'keyword': '猎鹰重型', 'weight': 10},
     {'keyword': 'spacex', 'weight': 9.0},
     {'keyword': '卫星互联网', 'weight': 9.0},
     {'keyword': '低轨卫星', 'weight': 9.0},
-    {'keyword': '星链', 'weight': 9.5},
     {'keyword': '中国卫星通信集团', 'weight': 8},
     {'keyword': '中国卫通', 'weight': 8},
     {'keyword': '上海微小卫星', 'weight': 8},
@@ -71,10 +58,17 @@ commercial_space_toutiaonews_keywords = [
 
 # Topic = 商业航天 in 百度资讯
 commercial_space_baidunews_keywords = [
+    {'keyword': '商业航天', 'weight': 9.5},
+    {'keyword': '星舰', 'weight': 10},
+    {'keyword': 'star ship', 'weight': 10},
+    {'keyword': '星链', 'weight': 9.5},
+    {'keyword': 'star link', 'weight': 10},
+    {'keyword': '猎鹰火箭', 'weight': 10},
+    {'keyword': '猎鹰9号', 'weight': 10},
+    {'keyword': '猎鹰重型', 'weight': 10},
     {'keyword': 'spacex', 'weight': 9.0},
     {'keyword': '卫星互联网', 'weight': 9.0},
     {'keyword': '低轨卫星', 'weight': 9.0},
-    {'keyword': '星链', 'weight': 9.5},
     {'keyword': '中国卫星通信集团', 'weight': 8},
     {'keyword': '中国卫通', 'weight': 8},
     {'keyword': '上海微小卫星', 'weight': 8},
@@ -124,6 +118,14 @@ HotPoint_toutiaonews_keywords = [
     {'keyword': '与辉同行', 'weight': 10},
     {'keyword': '人形机器人', 'weight': 10},
     {'keyword': '固态电池', 'weight': 10},
+    {'keyword': '马斯克', 'weight': 10},
+    {'keyword': 'elon musk', 'weight': 10},
+    {'keyword': '小米汽车', 'weight': 10},
+    {'keyword': 'su7', 'weight': 10},
+    {'keyword': 'su8', 'weight': 10},
+    {'keyword': '小米suv', 'weight': 10},
+    {'keyword': 'V8S超级电机', 'weight': 8},
+    {'keyword': '江波龙', 'weight': 8},
 ]
 
 # Topic = 先锋热点 in 百度资讯
@@ -133,10 +135,114 @@ HotPoint_baidunews_keywords = [
     {'keyword': '与辉同行', 'weight': 10},
     {'keyword': '人形机器人', 'weight': 10},
     {'keyword': '固态电池', 'weight': 10},
+    {'keyword': '马斯克', 'weight': 10},
+    {'keyword': 'elon musk', 'weight': 10},
+    {'keyword': '小米汽车', 'weight': 10},
+    {'keyword': 'su7', 'weight': 10},
+    {'keyword': 'su8', 'weight': 10},
+    {'keyword': '小米suv', 'weight': 10},
+    {'keyword': 'V8S超级电机', 'weight': 8},
+    {'keyword': '江波龙', 'weight': 8},
+]
+
+# Topic = AI算力 in 头条资讯
+AIHPC_toutiaonews_keywords = [
+    # AI概念
+    {'keyword': 'AGI', 'weight': 10},
+    {'keyword': 'ASI', 'weight': 10},
+    # AI公司产品人物
+    {'keyword': 'openai', 'weight': 10},
+    {'keyword': 'gpt5', 'weight': 10},
+    {'keyword': 'gpt 5', 'weight': 10},
+    {'keyword': 'gpt-5', 'weight': 10},
+    {'keyword': 'gpt4.5', 'weight': 10},
+    {'keyword': 'gpt 4.5', 'weight': 10},
+    {'keyword': 'gpt-4.5', 'weight': 10},
+    {'keyword': 'Ilya', 'weight': 10},
+    {'keyword': 'Sam Altman', 'weight': 10},
+    {'keyword': '山姆·奥特曼', 'weight': 10},
+    {'keyword': 'kimi', 'weight': 10},
+    {'keyword': 'chatglm', 'weight': 10},
+    {'keyword': 'sora', 'weight': 10},
+    # 算力芯片
+    {'keyword': '算力芯片', 'weight': 10},
+    {'keyword': 'AI芯片', 'weight': 10},
+    {'keyword': 'nv', 'weight': 10},
+    {'keyword': 'nvida', 'weight': 10},
+    {'keyword': '黄仁勋', 'weight': 10},
+    {'keyword': 'A100', 'weight': 10},
+    {'keyword': 'B200', 'weight': 10},
+    {'keyword': 'tpu', 'weight': 10},
+    # 算通一体化
+    {'keyword': 'nv link', 'weight': 10},
+    {'keyword': '硅光', 'weight': 10},
+    {'keyword': 'silicon photonic', 'weight': 10},
+    {'keyword': '光互联', 'weight': 10},
+    {'keyword': 'optical interconnects', 'weight': 10},
+    {'keyword': 'optical interconnect', 'weight': 10},
+    {'keyword': 'CPO', 'weight': 10},
+    {'keyword': 'OCS', 'weight': 10},
+    {'keyword': 'CXL', 'weight': 10},
+    {'keyword': 'compute express link', 'weight': 10},
+    {'keyword': 'ayar', 'weight': 10},
+]
+
+# Topic = AI算力 in 百度资讯
+AIHPC_baidunews_keywords = [
+    # AI概念
+    {'keyword': 'AGI', 'weight': 10},
+    {'keyword': 'ASI', 'weight': 10},
+    # AI公司产品人物
+    {'keyword': 'openai', 'weight': 10},
+    {'keyword': 'gpt5', 'weight': 10},
+    {'keyword': 'gpt 5', 'weight': 10},
+    {'keyword': 'gpt-5', 'weight': 10},
+    {'keyword': 'gpt4.5', 'weight': 10},
+    {'keyword': 'gpt 4.5', 'weight': 10},
+    {'keyword': 'gpt-4.5', 'weight': 10},
+    {'keyword': 'Ilya', 'weight': 10},
+    {'keyword': 'Sam Altman', 'weight': 10},
+    {'keyword': '山姆·奥特曼', 'weight': 10},
+    {'keyword': 'kimi', 'weight': 10},
+    {'keyword': 'chatglm', 'weight': 10},
+    {'keyword': 'sora', 'weight': 10},
+    # 算力芯片
+    {'keyword': '算力芯片', 'weight': 10},
+    {'keyword': 'AI芯片', 'weight': 10},
+    {'keyword': 'nv', 'weight': 10},
+    {'keyword': 'nvida', 'weight': 10},
+    {'keyword': '黄仁勋', 'weight': 10},
+    {'keyword': 'A100', 'weight': 10},
+    {'keyword': 'B200', 'weight': 10},
+    {'keyword': 'tpu', 'weight': 10},
+    # 算通一体化
+    {'keyword': 'nv link', 'weight': 10},
+    {'keyword': '硅光', 'weight': 10},
+    {'keyword': 'silicon photonic', 'weight': 10},
+    {'keyword': '光互联', 'weight': 10},
+    {'keyword': 'optical interconnects', 'weight': 10},
+    {'keyword': 'optical interconnect', 'weight': 10},
+    {'keyword': 'CPO', 'weight': 10},
+    {'keyword': 'OCS', 'weight': 10},
+    {'keyword': 'CXL', 'weight': 10},
+    {'keyword': 'compute express link', 'weight': 10},
+    {'keyword': 'ayar', 'weight': 10},
 ]
 
 # Topic = Lidar智驾 in 头条资讯
 LidarADAS_toutiaonews_keywords = [
+    {'keyword': '激光雷达', 'weight': 10},
+    {'keyword': '激光雷达 低空经济', 'weight': 10},
+    {'keyword': '激光雷达 低空无人', 'weight': 10},
+    {'keyword': '激光雷达 低空交通', 'weight': 10},
+    {'keyword': '激光雷达 低空物流', 'weight': 10},
+    {'keyword': '激光雷达 无人物流', 'weight': 10},
+    {'keyword': '激光雷达 智能网联', 'weight': 10},
+    {'keyword': '激光雷达 v2x', 'weight': 10},
+    {'keyword': 'Lidar', 'weight': 10},
+    {'keyword': 'FMCW', 'weight': 10},
+    {'keyword': 'OPA', 'weight': 10},
+    {'keyword': '智驾', 'weight': 10},
     {'keyword': '禾赛', 'weight': 10},
     {'keyword': '速腾聚创', 'weight': 10},
     {'keyword': '图达通', 'weight': 10},
@@ -196,8 +302,22 @@ LidarADAS_toutiaonews_keywords = [
     {'keyword': '元戎启行', 'weight': 10},
 ]
 
+
+
 # Topic = Lidar智驾 in 百度资讯
 LidarADAS_baidunews_keywords = [
+    {'keyword': '激光雷达', 'weight': 10},
+    {'keyword': '激光雷达 低空经济', 'weight': 10},
+    {'keyword': '激光雷达 低空无人', 'weight': 10},
+    {'keyword': '激光雷达 低空物流', 'weight': 10},
+    {'keyword': '激光雷达 低空交通', 'weight': 10},
+    {'keyword': '激光雷达 无人物流', 'weight': 10},
+    {'keyword': '激光雷达 智能网联', 'weight': 10},
+    {'keyword': '激光雷达 v2x', 'weight': 10},
+    {'keyword': 'Lidar', 'weight': 10},
+    {'keyword': 'FMCW', 'weight': 10},
+    {'keyword': 'OPA', 'weight': 10},
+    {'keyword': '智驾', 'weight': 10},
     {'keyword': '禾赛', 'weight': 10},
     {'keyword': '速腾聚创', 'weight': 10},
     {'keyword': '图达通', 'weight': 10},
@@ -259,6 +379,11 @@ LidarADAS_baidunews_keywords = [
 
 # Topic = 量化 in 头条资讯
 quantitative_trading_toutiaonews_keywords = [
+    # {'keyword': '量化', 'weight': 10},
+    {'keyword': '对冲', 'weight': 10},
+    {'keyword': '对冲基金', 'weight': 10},
+    {'keyword': '量化私募', 'weight': 10},
+    {'keyword': '量化基金', 'weight': 10},
     {'keyword': '量化交易', 'weight': 10},
     {'keyword': 'dma量化交易', 'weight': 10},
     {'keyword': '高频交易', 'weight': 10},
@@ -326,6 +451,11 @@ quantitative_trading_toutiaonews_keywords = [
 
 # Topic = 量化 in 百度资讯
 quantitative_trading_baidunews_keywords = [
+    # {'keyword': '量化', 'weight': 10},
+    {'keyword': '对冲', 'weight': 10},
+    {'keyword': '对冲基金', 'weight': 10},
+    {'keyword': '量化私募', 'weight': 10},
+    {'keyword': '量化基金', 'weight': 10},
     {'keyword': '量化交易', 'weight': 10},
     {'keyword': 'dma量化交易', 'weight': 10},
     {'keyword': '高频交易', 'weight': 10},

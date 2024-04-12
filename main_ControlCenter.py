@@ -44,7 +44,7 @@ def receive_report():
             return jsonify({'status': 'error', 'message': 'Invalid report data'}), 400
 
         ServiceStatusDict[reportService] = [str(reportTime),str(reportStr)]
-        print(ServiceStatusDict)
+        # print(ServiceStatusDict)
 
         return jsonify({'status': 'success', 'message': 'Report received'}), 200
     else:

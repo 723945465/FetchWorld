@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
     <title>hismsg_info Data</title>
     <script src="https://cdn.sheetjs.com/xlsx-0.18.1/package/dist/xlsx.full.min.js"></script>
@@ -45,7 +45,7 @@
         border-bottom: none;
       }
       .data-header-info_content, .data-row-info_content {
-        width: 65%;
+        width: 50%;
       }
       button {
         padding: 8px 16px;
@@ -74,10 +74,17 @@
         display: none;
         z-index: 1000;
       }
-      /* 修改Select的宽度 */
+      /* 修改Select、Info Source的宽度 */
       .data-header-select,
-      .data-row-select {
-        width: 1%;
+      .data-row-select,
+      .data-header-info_source,
+      .data-row-info_source {
+        width: 5%;
+      }
+      /* 调整Info Match Topic的字体大小 */
+      .data-header-info_match_topic,
+      .data-row-info_match_topic {
+        font-size: 14px;
       }
       #dataModal {
         position: fixed;
@@ -130,16 +137,18 @@
   <div class="data-header">
     <div class="data-header-select"><input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)"></div>
     <div>Create Time</div>
+    <div class="data-header-info_source">Info Source</div>
     <div>Info Author Name</div>
     <div>Info Type</div>
     <div>Info Title</div>
     <div class="data-header-info_content">Info Content</div>
     <div>Info Internet Address</div>
+    <div class="data-header-info_match_topic">Info Match Topic</div>
   </div>
   {% if rows %}
   {% for row in rows %}
   <div class="data-row">
-    <div class="data-row-select"><input type="checkbox" value="{{ row['id'] }}"></div>
+    <div class="data-row-select"><input type="checkbox" value="{{ row['id'] }}" onchange="showSelectedIds()"></div>
     {% for key, value in row.items() %}
     {% if key != 'id' %}
     <div class="data-row-{{ key }}">
@@ -149,20 +158,8 @@
         {% endif %}
       {% elif key == 'info_content' %}
         {% if value %}
-          <div onclick="copyToClipboard(this)">
-            {% if value|length > 300 %}
-              <span class="shortened-content">{{ row['info_title'] }}</br></span>
-              <span class="shortened-content">{{ value[:300] }}...</span>
-              <span class="full-content" style="display: none;">{{ value }}</span>
-              <button onclick="toggleContent(this)" style="border: none; background: none; color: #2a69dc; text-decoration: underline; cursor: pointer;">展开</button>
-            {% else %}
-              <span class="shortened-content">{{ row['info_title'] }}</br></span>
-              {{ value }}
-            {% endif %}
-          </div> <!-- 添加点击事件调用函数 -->
+          <div onclick="copyToClipboard(this)">{{ value }}</div> <!-- 添加点击事件调用函数 -->
         {% endif %}
-      {% elif key == 'info_title' %}
-        <!-- Title 不显示 -->
       {% else %}
         {{ value }}
       {% endif %}
@@ -244,7 +241,7 @@ function copyToClipboard(element) {
   var text = element.textContent;
   navigator.clipboard.writeText(text)
     .then(function() {
-      showNotification('文本已复制到剪切板: ' + text.substring(0,100) + '...');
+      showNotification('Text copied to clipboard: ' + text);
     })
     .catch(function(error) {
       console.error('Unable to copy text to clipboard: ', error);
@@ -282,23 +279,6 @@ function showSelectedIds() {
   }
   var selectedIdsString = selectedIds.join(', '); // 使用逗号分隔的 id 组成的字符串
   alert("Selected row IDs: " + selectedIdsString); // 弹出显示选中行的 id 的弹窗
-}
-
-function toggleContent(button) {
-    var div = button.parentNode;
-    var shortenedContent = div.querySelector('.shortened-content');
-    var fullContent = div.querySelector('.full-content');
-    var buttonText = button.textContent;
-
-    if (buttonText === '展开') {
-        shortenedContent.style.display = 'none';
-        fullContent.style.display = 'inline';
-        button.textContent = '折叠';
-    } else {
-        shortenedContent.style.display = 'inline';
-        fullContent.style.display = 'none';
-        button.textContent = '展开';
-    }
 }
 
 function closeModal() {

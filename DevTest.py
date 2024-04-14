@@ -38,7 +38,7 @@ def index():
     info_type = request.args.get('info_type')
     info_match_topic = request.args.get('info_match_topic')
 
-    query = "SELECT id, create_time, info_source , info_author_name , info_type , info_title ,info_content , info_internet_address, info_match_topic  FROM hismsg_info"
+    query = "SELECT id, create_time , info_author_name , info_type , info_title ,info_content , info_internet_address  FROM hismsg_info"
     filters = []
 
     if create_time_filter:
@@ -63,7 +63,7 @@ def index():
     if filters:
         query += " WHERE " + " AND ".join(filters)
 
-    query += " ORDER BY id desc LIMIT 20 "
+    query += " ORDER BY id desc LIMIT 50 "
 
     print(query)
     conn = pymysql.connect(**DATABASE_CONFIG)

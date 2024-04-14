@@ -63,7 +63,7 @@ def index():
     if filters:
         query += " WHERE " + " AND ".join(filters)
 
-    query += " ORDER BY id desc LIMIT 20 "
+    query += " ORDER BY id desc LIMIT 40 "
 
     print(query)
     conn = pymysql.connect(**DATABASE_CONFIG)

@@ -117,6 +117,7 @@
 
 <button onclick="exportToExcel()">Export to Excel</button>
 <button onclick="analyzeTimeline()">时间轴分析</button> <!-- 添加时间轴分析按钮 -->
+<button onclick="exportToTxt()">Export to TXT</button>
 <h1>hismsg_info Data</h1>
 <form method="GET" action="/">
     <label for="create_time_filter">Create Time Filter:</label>
@@ -284,6 +285,25 @@ function showSelectedIds() {
 function closeModal() {
   document.getElementById('dataModal').style.display = 'none'; // 关闭弹框
 }
+
+function exportToTxt() {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  var data = [];
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    var row = checkboxes[i].parentNode.parentNode;
+    var infoContent = row.children[6].textContent.trim();
+    data.push(infoContent + "\n");
+  }
+
+  var textContent = data.join("``---------------------------\n\n\n");
+  var blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
+  var link = document.createElement("a");
+  link.href = window.URL.createObjectURL(blob);
+  link.download = "export.txt";
+  link.click();
+}
+
 </script>
 
 </body>

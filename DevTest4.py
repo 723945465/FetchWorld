@@ -88,8 +88,8 @@ def newInsertNewTopicSearchHismsg_Toutiao(SearchKeyword, Title, BigContent, Time
         if connection.is_connected():
             cursor = connection.cursor()
             # 查询数据库中是否存在相同的title或link
-            query = """SELECT * FROM topicsearch_hismsg_info where info_internet_address = %s"""
-            cursor.execute(query, (Url,))
+            query = """SELECT * FROM topicsearch_hismsg_info where info_internet_address = %s or info_title = %s"""
+            cursor.execute(query, (Url,Title))
             rows = cursor.fetchall()
             if len(rows) == 0:
                 query = """insert into topicsearch_hismsg_info 

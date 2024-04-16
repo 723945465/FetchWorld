@@ -45,7 +45,7 @@
         border-bottom: none;
       }
       .data-header-info_content, .data-row-info_content {
-        width: 65%;
+        width: 70%;
       }
       button {
         padding: 8px 16px;
@@ -113,29 +113,31 @@
 <button onclick="exportToTxt()">Export to TXT</button>
 <h1>hismsg_info Data</h1>
 <form method="GET" action="/">
-    <label for="create_time_filter">Create Time Filter:</label>
+    <label for="create_time_filter">Create Time:</label>
     <select id="create_time_filter" name="create_time_filter">
         <option value="">All</option>
         <option value="today">Today</option>
         <option value="two_days">Within 2 Days</option>
+        <option value="three_days">Within 3 Days</option>
         <option value="one_week">Within 1 Week</option>
         <option value="one_month">Within 1 Month</option>
     </select>
     <label for="info_type">Info Type:</label>
     <input type="text" id="info_type" name="info_type">
-    <label for="info_match_topic">Info Match Topic:</label>
+    <label for="info_match_topic">Info Match Topic包含:</label>
     <input type="text" id="info_match_topic" name="info_match_topic">
+    <label for="info_count">数量:</label>
+    <input type="text" id="info_count" name="info_count">
     <input type="submit" value="Filter">
 </form>
 <div class="data-container">
   <div class="data-header">
     <div class="data-header-select"><input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)"></div>
-    <div>Create Time</div>
-    <div>Info Author Name</div>
+    <div>时间</div>
+    <div>作者</div>
     <div>Info Type</div>
-    <div>Info Title</div>
     <div class="data-header-info_content">Info Content</div>
-    <div>Info Internet Address</div>
+    <div>URL</div>
   </div>
   {% if rows %}
   {% for row in rows %}
@@ -309,14 +311,13 @@ function closeModal() {
 function exportToTxt() {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
   var data = [];
-
   for (var i = 0; i < checkboxes.length; i++) {
     var row = checkboxes[i].parentNode.parentNode;
-    var infoContent = row.children[6].textContent.trim();
-    data.push(infoContent + "\n");
+    var fullContent = row.children[4].querySelector('.full-content').textContent.trim(); // 获取完整的文本内容
+    data.push(fullContent + "\n");
   }
 
-  var textContent = data.join("``---------------------------\n\n\n");
+  var textContent = data.join("---------------------------\n\n\n");
   var blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
   var link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);

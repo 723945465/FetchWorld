@@ -40,7 +40,8 @@ def index():
     info_count = request.args.get('info_count')
     print(info_count)
 
-    query = "SELECT id, create_time , info_author_name , info_type ,info_content , info_internet_address  FROM hismsg_info"
+    query = """SELECT id, create_time , info_author_name , info_type ,info_content , info_internet_address  FROM hismsg_info 
+    where  (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL) """
     filters = []
 
     if create_time_filter:
@@ -66,14 +67,16 @@ def index():
         filters.append(f"info_match_topic LIKE '%{info_match_topic}%'")
 
     if filters:
-        query += " WHERE " + " AND ".join(filters)
+        query += " AND " + " AND ".join(filters)
 
-    if info_count.isdigit():
-        query += " ORDER BY id desc LIMIT " + info_count
-    elif len(info_count) > 0:
-        query += " ORDER BY id desc LIMIT 50 "
+    if info_count:
+        if info_count.isdigit():
+            query += " ORDER BY id desc LIMIT " + info_count
+        else:
+            query += " ORDER BY id desc LIMIT 50 "
     else:
-        query += " ORDER BY id desc"
+        query += " ORDER BY id desc LIMIT 50 "
+
 
     print(query)
     conn = pymysql.connect(**DATABASE_CONFIG)

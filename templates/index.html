@@ -213,12 +213,30 @@ function analyzeTimeline() {
   });
 }
 
-
-function exportToExcel() {
+function exportToTxt() {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
   var data = [];
   for (var i = 0; i < checkboxes.length; i++) {
     var row = checkboxes[i].parentNode.parentNode;
+    var fullContent = row.children[4].querySelector('.full-content').textContent.trim(); // 获取完整的文本内容
+    data.push(fullContent + "\n");
+  }
+
+  var textContent = data.join("---------------------------\n\n\n");
+  var blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
+  var link = document.createElement("a");
+  link.href = window.URL.createObjectURL(blob);
+  link.download = "export.txt";
+  link.click();
+}
+
+function exportToExcel() {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  var data = [];
+  alert(data)
+  for (var i = 0; i < checkboxes.length; i++) {
+    var row = checkboxes[i].parentNode.parentNode;
+    var fullContent = row.children[4].querySelector('.full-content').textContent.trim(); // 获取完整的文本内容
     var rowData = [
       row.cells[1].textContent,
       row.cells[2].textContent,
@@ -226,6 +244,8 @@ function exportToExcel() {
     ];
     data.push(rowData);
   }
+
+  alert(data)
 
   var worksheet = XLSX.utils.aoa_to_sheet([["create_time", "info_source", "info_author_name"], ...data]);
   var workbook = XLSX.utils.book_new();
@@ -308,22 +328,7 @@ function closeModal() {
   document.getElementById('dataModal').style.display = 'none'; // 关闭弹框
 }
 
-function exportToTxt() {
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-  var data = [];
-  for (var i = 0; i < checkboxes.length; i++) {
-    var row = checkboxes[i].parentNode.parentNode;
-    var fullContent = row.children[4].querySelector('.full-content').textContent.trim(); // 获取完整的文本内容
-    data.push(fullContent + "\n");
-  }
 
-  var textContent = data.join("---------------------------\n\n\n");
-  var blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
-  var link = document.createElement("a");
-  link.href = window.URL.createObjectURL(blob);
-  link.download = "export.txt";
-  link.click();
-}
 
 </script>
 

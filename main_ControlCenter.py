@@ -5,6 +5,9 @@ from mysql.connector import Error
 import json
 import re
 
+import FTPTools
+import CommonDbOpTools
+
 app = Flask(__name__)
 db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
@@ -60,6 +63,21 @@ def run_status():
         res_string = (res_string
                       + f"{str(status[0])} &nbsp;{service}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {str(status[1])}"
                       + "</br>")
+
+    if(FTPTools.FTP_test() == 'success'):
+        res_string += " </br>FTP test is OK.  </br>"
+
+    res = CommonDbOpTools.query_latest_hismsg_by_infosource("微信")
+    res_string += f" </br>latest msg from 微信： {res} </br>"
+    res = CommonDbOpTools.query_latest_hismsg_by_infosource("公众号")
+    res_string += f" </br>latest msg from 公号： {res} </br>"
+    res = CommonDbOpTools.query_latest_hismsg_by_infosource("微博")
+    res_string += f" </br>latest msg from 微博： {res} </br>"
+    res = CommonDbOpTools.query_latest_hismsg_by_infosource("雪球")
+    res_string += f" </br>latest msg from 雪球： {res} </br>"
+    res = CommonDbOpTools.query_latest_hismsg_by_infosource("头条资讯搜索")
+    res_string += f" </br>latest msg from 搜索： {res} </br>"
+
     return res_string, 200
 
 

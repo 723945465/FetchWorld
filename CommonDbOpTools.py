@@ -64,3 +64,35 @@ def set_bad_hismsg(hismsg_id):
         if connection.is_connected():
             cursor.close()
             connection.close()
+
+
+def query_latest_hismsg_by_infosource(infosource):
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            # 查询数据库中是否存在相同的title或link
+            query = f"""SELECT create_time FROM fetchtheworld.hismsg_info
+                        where info_source = '{infosource}' 
+                        ORDER BY id desc LIMIT 1;"""
+            cursor.execute(query)
+            rows = cursor.fetchall()
+            if(len(rows)>0):
+                return str(rows[0][0])
+            else:
+                return "Error info source input."
+
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {query}")
+        return f"Error while connecting to MySQL: {e}"
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+if __name__ == '__main__':
+    res = query_latest_hismsg_by_infosource("微信")
+    print(res)

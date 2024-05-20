@@ -123,8 +123,6 @@ if __name__ == '__main__':
     # for topic in TopicList:
     #     print(GetKeywordsByTopicsAndSearchPlatform(topic,SearchPlatform))
 
-    UpdateTopic('小米汽车', '头条资讯', TopicSearchKeywordsList.xiaomi_car_toutiaonews_keywords)
-    UpdateTopic('小米汽车', '百度资讯', TopicSearchKeywordsList.xiaomi_car_baidunews_keywords)
     UpdateTopic('低空经济', '头条资讯', TopicSearchKeywordsList.low_altitude_economy_toutiaonews_keywords)
     UpdateTopic('低空经济', '百度资讯', TopicSearchKeywordsList.low_altitude_economy_baidunews_keywords)
     UpdateTopic('商业航天', '头条资讯', TopicSearchKeywordsList.commercial_space_toutiaonews_keywords)
@@ -135,5 +133,7 @@ if __name__ == '__main__':
     UpdateTopic('先锋热点', '百度资讯', TopicSearchKeywordsList.HotPoint_baidunews_keywords)
     UpdateTopic('Lidar智驾', '头条资讯', TopicSearchKeywordsList.LidarADAS_toutiaonews_keywords)
     UpdateTopic('Lidar智驾', '百度资讯', TopicSearchKeywordsList.LidarADAS_baidunews_keywords)
+    UpdateTopic('AI算力', '头条资讯', TopicSearchKeywordsList.AIHPC_toutiaonews_keywords)
+    UpdateTopic('AI算力', '百度资讯', TopicSearchKeywordsList.AIHPC_baidunews_keywords)
     UpdateTopic('量化', '头条资讯', TopicSearchKeywordsList.quantitative_trading_toutiaonews_keywords)
     UpdateTopic('量化', '百度资讯', TopicSearchKeywordsList.quantitative_trading_baidunews_keywords)

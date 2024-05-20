@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
     <title>hismsg_info Data</title>
     <script src="https://cdn.sheetjs.com/xlsx-0.18.1/package/dist/xlsx.full.min.js"></script>
@@ -45,7 +45,7 @@
         border-bottom: none;
       }
       .data-header-info_content, .data-row-info_content {
-        width: 70%;
+        width: 50%;
       }
       button {
         padding: 8px 16px;
@@ -74,10 +74,17 @@
         display: none;
         z-index: 1000;
       }
-      /* 修改Select的宽度 */
+      /* 修改Select、Info Source的宽度 */
       .data-header-select,
-      .data-row-select {
-        width: 1%;
+      .data-row-select,
+      .data-header-info_source,
+      .data-row-info_source {
+        width: 5%;
+      }
+      /* 调整Info Match Topic的字体大小 */
+      .data-header-info_match_topic,
+      .data-row-info_match_topic {
+        font-size: 14px;
       }
       #dataModal {
         position: fixed;
@@ -110,39 +117,38 @@
 
 <button onclick="exportToExcel()">Export to Excel</button>
 <button onclick="analyzeTimeline()">时间轴分析</button> <!-- 添加时间轴分析按钮 -->
-<button onclick="exportToTxt()">Export to TXT</button>
 <h1>hismsg_info Data</h1>
 <form method="GET" action="/">
-    <label for="create_time_filter">Create Time:</label>
+    <label for="create_time_filter">Create Time Filter:</label>
     <select id="create_time_filter" name="create_time_filter">
         <option value="">All</option>
         <option value="today">Today</option>
         <option value="two_days">Within 2 Days</option>
-        <option value="three_days">Within 3 Days</option>
         <option value="one_week">Within 1 Week</option>
         <option value="one_month">Within 1 Month</option>
     </select>
     <label for="info_type">Info Type:</label>
     <input type="text" id="info_type" name="info_type">
-    <label for="info_match_topic">Info Match Topic包含:</label>
+    <label for="info_match_topic">Info Match Topic:</label>
     <input type="text" id="info_match_topic" name="info_match_topic">
-    <label for="info_count">数量:</label>
-    <input type="text" id="info_count" name="info_count">
     <input type="submit" value="Filter">
 </form>
 <div class="data-container">
   <div class="data-header">
     <div class="data-header-select"><input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)"></div>
-    <div>时间</div>
-    <div>作者</div>
+    <div>Create Time</div>
+    <div class="data-header-info_source">Info Source</div>
+    <div>Info Author Name</div>
     <div>Info Type</div>
+    <div>Info Title</div>
     <div class="data-header-info_content">Info Content</div>
-    <div>URL</div>
+    <div>Info Internet Address</div>
+    <div class="data-header-info_match_topic">Info Match Topic</div>
   </div>
   {% if rows %}
   {% for row in rows %}
   <div class="data-row">
-    <div class="data-row-select"><input type="checkbox" value="{{ row['id'] }}"></div>
+    <div class="data-row-select"><input type="checkbox" value="{{ row['id'] }}" onchange="showSelectedIds()"></div>
     {% for key, value in row.items() %}
     {% if key != 'id' %}
     <div class="data-row-{{ key }}">
@@ -152,20 +158,8 @@
         {% endif %}
       {% elif key == 'info_content' %}
         {% if value %}
-          <div onclick="copyToClipboard(this)">
-            {% if value|length > 300 %}
-              <span class="shortened-content">{{ row['info_title'] }}</br></span>
-              <span class="shortened-content">{{ value[:300] }}...</span>
-              <span class="full-content" style="display: none;">{{ value }}</span>
-              <button onclick="toggleContent(this)" style="border: none; background: none; color: #2a69dc; text-decoration: underline; cursor: pointer;">展开</button>
-            {% else %}
-              <span class="shortened-content">{{ row['info_title'] }}</br></span>
-              {{ value }}
-            {% endif %}
-          </div> <!-- 添加点击事件调用函数 -->
+          <div onclick="copyToClipboard(this)">{{ value }}</div> <!-- 添加点击事件调用函数 -->
         {% endif %}
-      {% elif key == 'info_title' %}
-        <!-- Title 不显示 -->
       {% else %}
         {{ value }}
       {% endif %}
@@ -213,30 +207,12 @@ function analyzeTimeline() {
   });
 }
 
-function exportToTxt() {
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-  var data = [];
-  for (var i = 0; i < checkboxes.length; i++) {
-    var row = checkboxes[i].parentNode.parentNode;
-    var fullContent = row.children[4].querySelector('.full-content').textContent.trim(); // 获取完整的文本内容
-    data.push(fullContent + "\n");
-  }
-
-  var textContent = data.join("---------------------------\n\n\n");
-  var blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
-  var link = document.createElement("a");
-  link.href = window.URL.createObjectURL(blob);
-  link.download = "export.txt";
-  link.click();
-}
 
 function exportToExcel() {
   var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
   var data = [];
-  alert(data)
   for (var i = 0; i < checkboxes.length; i++) {
     var row = checkboxes[i].parentNode.parentNode;
-    var fullContent = row.children[4].querySelector('.full-content').textContent.trim(); // 获取完整的文本内容
     var rowData = [
       row.cells[1].textContent,
       row.cells[2].textContent,
@@ -244,8 +220,6 @@ function exportToExcel() {
     ];
     data.push(rowData);
   }
-
-  alert(data)
 
   var worksheet = XLSX.utils.aoa_to_sheet([["create_time", "info_source", "info_author_name"], ...data]);
   var workbook = XLSX.utils.book_new();
@@ -267,7 +241,7 @@ function copyToClipboard(element) {
   var text = element.textContent;
   navigator.clipboard.writeText(text)
     .then(function() {
-      showNotification('文本已复制到剪切板: ' + text.substring(0,100) + '...');
+      showNotification('Text copied to clipboard: ' + text);
     })
     .catch(function(error) {
       console.error('Unable to copy text to clipboard: ', error);
@@ -307,29 +281,9 @@ function showSelectedIds() {
   alert("Selected row IDs: " + selectedIdsString); // 弹出显示选中行的 id 的弹窗
 }
 
-function toggleContent(button) {
-    var div = button.parentNode;
-    var shortenedContent = div.querySelector('.shortened-content');
-    var fullContent = div.querySelector('.full-content');
-    var buttonText = button.textContent;
-
-    if (buttonText === '展开') {
-        shortenedContent.style.display = 'none';
-        fullContent.style.display = 'inline';
-        button.textContent = '折叠';
-    } else {
-        shortenedContent.style.display = 'inline';
-        fullContent.style.display = 'none';
-        button.textContent = '展开';
-    }
-}
-
 function closeModal() {
   document.getElementById('dataModal').style.display = 'none'; // 关闭弹框
 }
-
-
-
 </script>
 
 </body>

@@ -100,10 +100,10 @@ def UpdateTopic(Topic_name, Topic_keywords):
 
 if __name__ == '__main__':
     UpdateTopic('商业航天', TopicKeywordsLists.commercial_space_keywords)
-    UpdateTopic('小米汽车', TopicKeywordsLists.xiaomi_car_keywords)
     UpdateTopic('低空经济', TopicKeywordsLists.low_altitude_economy_keywords)
     UpdateTopic('通用价值点', TopicKeywordsLists.common_value_keywords)
     UpdateTopic('先锋热点', TopicKeywordsLists.HotPoint_keywords)
     UpdateTopic('生物制造', TopicKeywordsLists.Biomanufacturing_keywords)
     UpdateTopic('Lidar智驾', TopicKeywordsLists.LidarADAS_keywords)
+    UpdateTopic('AI算力', TopicKeywordsLists.AIHPC_keywords)
     UpdateTopic('量化', TopicKeywordsLists.quantitative_trading_keywords)

@@ -3,7 +3,7 @@ from ftplib import FTP
 # import OCR_PaddleOCRTools
 
 # 设置FTP服务器的详细信息
-ftp_host = '43.140.208.184'
+ftp_host = '111.229.29.217'
 ftp_user = 'ftpuser'
 ftp_passwd = 'lhins-1wsdpang'
 

@@ -96,6 +96,7 @@ Biomanufacturing_toutiaonews_keywords = [
     {'keyword': '生物制造', 'weight': 10},
     {'keyword': '合成生物', 'weight': 10},
     {'keyword': 'bio-made', 'weight': 10},
+    {'keyword': 'SynBio', 'weight': 10},
     {'keyword': '合成蛋白质', 'weight': 10},
     {'keyword': '蛋白质合成', 'weight': 10},
     {'keyword': '人造肉', 'weight': 10},
@@ -293,6 +294,7 @@ Biomanufacturing_baidunews_keywords = [
     {'keyword': '生物制造', 'weight': 10},
     {'keyword': '合成生物', 'weight': 10},
     {'keyword': 'bio-made', 'weight': 10},
+    {'keyword': 'SynBio', 'weight': 10},
     {'keyword': '合成蛋白质', 'weight': 10},
     {'keyword': '蛋白质合成', 'weight': 10},
     {'keyword': '人造肉', 'weight': 10},
@@ -741,6 +743,7 @@ LidarADAS_baidunews_keywords = [
 quantitative_trading_toutiaonews_keywords = [
     # {'keyword': '量化', 'weight': 10},
     {'keyword': '程序化交易', 'weight': 10},
+    {'keyword': '转融通', 'weight': 10},
     {'keyword': '对冲基金', 'weight': 10},
     {'keyword': '量化私募', 'weight': 10},
     {'keyword': '量化基金', 'weight': 10},
@@ -813,6 +816,7 @@ quantitative_trading_toutiaonews_keywords = [
 quantitative_trading_baidunews_keywords = [
     # {'keyword': '量化', 'weight': 10},
     {'keyword': '程序化交易', 'weight': 10},
+    {'keyword': '转融通', 'weight': 10},
     {'keyword': '对冲基金', 'weight': 10},
     {'keyword': '量化私募', 'weight': 10},
     {'keyword': '量化基金', 'weight': 10},

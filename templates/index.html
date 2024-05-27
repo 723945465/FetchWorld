@@ -312,11 +312,11 @@ function exportToTxt() {
 
   for (var i = 0; i < checkboxes.length; i++) {
     var row = checkboxes[i].parentNode.parentNode;
-    var infoContent = row.children[6].textContent.trim();
+    var infoContent = row.children[5].textContent.trim();
     data.push(infoContent + "\n");
   }
 
-  var textContent = data.join("``---------------------------\n\n\n");
+  var textContent = data.join("---------------------------\n\n\n");
   var blob = new Blob([textContent], { type: "text/plain;charset=utf-8" });
   var link = document.createElement("a");
   link.href = window.URL.createObjectURL(blob);

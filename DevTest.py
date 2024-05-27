@@ -37,8 +37,11 @@ def index():
     create_time_filter = request.args.get('create_time_filter')
     info_type = request.args.get('info_type')
     info_match_topic = request.args.get('info_match_topic')
+    info_count = request.args.get('info_count')
+    print(info_count)
 
-    query = "SELECT id, create_time , info_author_name , info_type , info_title ,info_content , info_internet_address  FROM hismsg_info"
+    query = """SELECT id, create_time , info_author_name , info_type ,info_content , info_internet_address  FROM hismsg_info 
+    where  (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL) """
     filters = []
 
     if create_time_filter:
@@ -48,6 +51,9 @@ def index():
         elif create_time_filter == 'two_days':
             two_days_ago = current_date - datetime.timedelta(days=2)
             filters.append(f"DATE(create_time) BETWEEN '{two_days_ago}' AND '{current_date}'")
+        elif create_time_filter == 'three_days':
+            three_days_ago = current_date - datetime.timedelta(days=3)
+            filters.append(f"DATE(create_time) BETWEEN '{three_days_ago}' AND '{current_date}'")
         elif create_time_filter == 'one_week':
             one_week_ago = current_date - datetime.timedelta(days=7)
             filters.append(f"DATE(create_time) BETWEEN '{one_week_ago}' AND DATE_ADD('{current_date}', INTERVAL 1 DAY)")
@@ -61,9 +67,16 @@ def index():
         filters.append(f"info_match_topic LIKE '%{info_match_topic}%'")
 
     if filters:
-        query += " WHERE " + " AND ".join(filters)
+        query += " AND " + " AND ".join(filters)
 
-    query += " ORDER BY id desc LIMIT 50 "
+    if info_count:
+        if info_count.isdigit():
+            query += " ORDER BY id desc LIMIT " + info_count
+        else:
+            query += " ORDER BY id desc LIMIT 50 "
+    else:
+        query += " ORDER BY id desc LIMIT 50 "
+
 
     print(query)
     conn = pymysql.connect(**DATABASE_CONFIG)
@@ -73,9 +86,8 @@ def index():
     cursor.close()
     conn.close()
 
-    print(rows)
     html_res = render_template('index.html', rows=rows)
-    print(html_res)
+
     return html_res
 
 

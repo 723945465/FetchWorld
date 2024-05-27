@@ -123,6 +123,9 @@ def ocr_recent_wechat_image():
     for temp_info in info_rows:
         temp_info_id = temp_info[0]
         temp_dwh_reletive_file_path = CommonDbOpTools.query_info_dwh_reletive_file_path(temp_info_id)
+        if temp_dwh_reletive_file_path is None:
+            print(f"""找不到hismsg的attachment：id {temp_info_id}""")
+            continue
         temp_orc_local_image_file_path = Dir_ocr_temp_image_folder + temp_dwh_reletive_file_path
         print(f"下载文件：{temp_dwh_reletive_file_path}")
         download_res = FTPTools.download_file_from_dwh(temp_dwh_reletive_file_path,temp_orc_local_image_file_path)

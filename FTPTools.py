@@ -1,9 +1,9 @@
 import os.path
 from ftplib import FTP
-import OCR_PaddleOCRTools
+# import OCR_PaddleOCRTools
 
 # 设置FTP服务器的详细信息
-ftp_host = '43.140.208.184'
+ftp_host = '111.229.29.217'
 ftp_user = 'ftpuser'
 ftp_passwd = 'lhins-1wsdpang'
 
@@ -30,13 +30,27 @@ def download_file_from_dwh(temp_dwh_reletive_file_path, local_filepath):
         # 关闭FTP连接
         ftp.quit()
 
+def FTP_test():
+    try:
+        # 连接到FTP服务器
+        ftp = FTP(ftp_host)
+        ftp.encoding = "GB18030"
+        ftp.timeout = 30
+        ftp.login(ftp_user, ftp_passwd)
+        return 'success'
 
+    except Exception as e:
+        print(f"Exception while FTP test: {e}")
+        return f"Exception while FTP test: {e}"
+    finally:
+        # 关闭FTP连接
+        ftp.quit()
 
 
 if __name__ == '__main__':
     # print(download_file_from_dwh('1234.png','D:\\1.png'))
-    print(OCR_PaddleOCRTools.PicToText_PaddleOCR('D:\\135.png'))
-
+    # print(OCR_PaddleOCRTools.PicToText_PaddleOCR('D:\\135.png'))
+    print(FTP_test())
 
 
 

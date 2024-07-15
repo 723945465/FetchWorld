@@ -37,16 +37,11 @@ required_libraries = [
     # 'cryptography', 'paramiko',  # 加密和远程连接
 ]
 
-#for i in required_libraries:
-    # code = f"pip install {i} -i https://pypi.tuna.tsinghua.edu.cn/simple"   # 可根据自己需求自行变更本行代码，本质就是cmd中输入的内容
-    # os.system('cmd /c "{}"'.format(code))
-    # print('\n')
-    # print(f'==================================')
-    # print(f'============{i}已经安装============')
-    # print(f'==================================')
-    # print('\n')
-
-
-code = f"pip install jieba -i https://pypi.tuna.tsinghua.edu.cn/simple"  # 可根据自己需求自行变更本行代码，本质就是cmd中输入的内容
-# os.system('cmd /c "{}"'.format(code))
-os.system('cmd /c python')
+for i in required_libraries:
+    code = f"pip install {i} -i https://pypi.tuna.tsinghua.edu.cn/simple"   # 可根据自己需求自行变更本行代码，本质就是cmd中输入的内容
+    os.system('cmd /c "{}"'.format(code))
+    print('\n')
+    print(f'==================================')
+    print(f'============{i}已经安装============')
+    print(f'==================================')
+    print('\n')

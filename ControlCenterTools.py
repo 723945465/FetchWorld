@@ -3,7 +3,7 @@ from requests.exceptions import Timeout
 from datetime import datetime
 
 # 远程Flask应用的URL
-ControlCenterUrl = 'http://47.97.219.6:1868'  # 请替换为你的Flask应用的实际URL
+ControlCenterUrl = 'http://111.229.29.217:1868'  # 请替换为你的Flask应用的实际URL
 timeout_seconds = 5
 
 def test_get_status():

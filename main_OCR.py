@@ -104,7 +104,7 @@ def ocr_recent_wechat_image():
             AND (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL) 
             AND info_source = '微信' 
             and info_type = '微信聊天图片' 
-            AND create_time  >= '2024-04-1';"""
+            AND create_time  >= '2025-01-1';"""
 
             cursor.execute(query)
             info_rows = cursor.fetchall()

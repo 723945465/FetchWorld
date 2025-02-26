@@ -165,4 +165,4 @@ def webhook():
     return jsonify({"message": "Data received successfully"}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1868, debug=True)
+    app.run(host='0.0.0.0', port=1869, debug=True)

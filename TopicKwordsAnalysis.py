@@ -94,6 +94,7 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
         if connection.is_connected():
             cursor = connection.cursor()
             if is_Refresh_mode == True:
+                # Refresh_mode的意思是，对以前已经分析过的数据项，全部重新再用当前的关键词分析一遍
                 query = """SELECT * FROM fetchtheworld.hismsg_info 
                 WHERE info_ready_for_analysis = 'yes' AND info_content is not null 
                 AND (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL) 

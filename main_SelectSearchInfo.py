@@ -31,6 +31,7 @@ def CommitSearchInfoToHismsg():
             AND create_time >= NOW() - INTERVAL 1 DAY"""
             cursor.execute(query)
             rows = cursor.fetchall()
+
             for temp_info in rows:
                 temp_searchinfo_id = temp_info[0]
                 temp_searchinfo_searchplatform = '' if temp_info[2] is None else str(temp_info[2])+'搜索'
@@ -50,6 +51,7 @@ def CommitSearchInfoToHismsg():
                 cursor.execute(query,(temp_searchinfo_id,))
                 connection.commit()
 
+            print(f"提交{str(len(rows))}个最新搜索文章的结果到hismsg_info")
             return "success"
         else:
             return "######ERROR###### cannot connect to mysql"

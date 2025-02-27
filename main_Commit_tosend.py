@@ -302,7 +302,7 @@ def commit_hismsg_tosend(LengthThreshold):
             cursor.close()
             connection.close()
 
-    print(len(info_rows))
+    # print(len(info_rows))
     for temp_info in info_rows:
         temp_info_id = temp_info[0]
         temp_info_author_name =  '' if temp_info[3] is None else temp_info[3]
@@ -323,14 +323,19 @@ def commit_hismsg_tosend(LengthThreshold):
             match_score = topic_key.split('##')[1]
             if temp_info_type == "微信聊天图片":
                 commit_wx_chat_pic_tosend(temp_info_id,temp_info_author_name,topic,keywords_str)
+                print(f"新提交一条微信聊天图片消息，来自：{temp_info_author_name}")
             elif temp_info_type == "微博推文":
                 commit_wb_tosend(temp_info_id,temp_info_author_name,temp_info_url,topic,keywords_str)
+                print(f"新提交一条微博推文消息，来自：{temp_info_author_name}")
             elif temp_info_type == "雪球推文":
                 commit_xq_tosend(temp_info_id,temp_info_author_name,temp_info_url,topic,keywords_str)
+                print(f"新提交一条雪球推文消息，来自：{temp_info_author_name}")
             elif temp_info_type == "公众号推文":
                commit_wxpublic_tosend(temp_info_id,temp_info_author_name,temp_info_title,temp_info_url,topic,keywords_str)
+               print(f"新提交一条公众号推文消息，来自：{temp_info_author_name}")
             elif temp_info_type == "头条百度资讯搜索":
                commit_toutiaobaidu_search_tosend(temp_info_id,temp_info_author_name,temp_info_title,temp_info_url,topic,keywords_str)
+               print(f"新提交一条头条百度资讯搜索消息，来自：{temp_info_author_name}")
             else:
                 print("未识别的temp_info_type：" + temp_info_type)
 

@@ -36,7 +36,7 @@ def getTopicList():
 if __name__ == '__main__':
     while True:
         TopicList = getTopicList()
-        print("开始对如下主题进行关键词分析：\n" + str(TopicList))
+        print("进行关键词分析的主题如下：\n" + str(TopicList))
         ControlCenterTools.report_to_ControlCenter("main_TopicKeywordsAnalysis", "开始对如下主题进行关键词分析：\n" + str(TopicList))
         time.sleep(3)
 

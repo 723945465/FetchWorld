@@ -12,75 +12,9 @@ db_user= 'chris'
 db_password= '19871127ldld'
 charset='utf8mb4'
 
-def query_info_dwh_reletive_file_path(hismsg_id):
-    try:
-        # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
-        if connection.is_connected():
-            cursor = connection.cursor()
-            # 查询数据库中是否存在相同的title或link
-            query = f"""SELECT dwh_reletive_file_path FROM msg_attach where hismsg_id = {hismsg_id};"""
-            cursor.execute(query)
-            rows = cursor.fetchall()
-            if(len(rows)>0):
-                info_dwh_reletive_file_path = rows[0][0]
-                return info_dwh_reletive_file_path
-
-    except Error as e:
-        print(f"Error while connecting to MySQL: {e}")
-        print(f"SQL STRING: {query}")
-        return ""  # 发生错误时返回空
-    finally:
-        # 关闭数据库连接
-        if connection.is_connected():
-            cursor.close()
-            connection.close()
-
-
-
-# 数据库连接配置
-config = {
-    'user': 'your_username',
-    'password': 'your_password',
-    'host': 'localhost',
-    'database': 'your_database',
-    'raise_on_warnings': True
-}
-
 
 # 初始化Flask应用
 app = Flask(__name__)
-
-
-# 连接数据库
-def connect_to_database():
-    try:
-        conn = mysql.connector.connect(**config)
-        print("Connected to MySQL database")
-        return conn
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
-        return None
-
-
-# 执行SQL查询
-def execute_query(conn, sql):
-    cursor = conn.cursor()
-    try:
-        cursor.execute(sql)
-        if sql.strip().lower().startswith("select"):
-            # 如果是查询操作，返回结果
-            result = cursor.fetchall()
-            return result
-        else:
-            # 如果是插入、更新、删除操作，提交事务并返回受影响的行数
-            conn.commit()
-            return cursor.rowcount
-    except mysql.connector.Error as err:
-        print(f"Error executing SQL: {err}")
-        return None
-    finally:
-        cursor.close()
 
 
 # HTTP接口：执行SQL

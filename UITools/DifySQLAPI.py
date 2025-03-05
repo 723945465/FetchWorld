@@ -1,8 +1,9 @@
 # sql_tools.py
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import mysql.connector
 from mysql.connector import Error
+import json
 
 
 
@@ -27,33 +28,34 @@ def execute_sql():
         return jsonify({"error": "SQL statement is required"}), 400
 
     sql = data['sql']
-    return jsonify(sql)
 
-    # try:
-    #     # 连接到MySQL数据库
-    #     connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
-    #     if connection.is_connected():
-    #         cursor = connection.cursor()
-    #         cursor.execute(sql)
-    #         res_rows = cursor.fetchall()
-    #
-    #         if res_rows is None:
-    #             return jsonify({"error": "Failed to execute SQL"}), 500
-    #         # 返回结果
-    #         return jsonify({"result": res_rows})
-    #         # return jsonify(res_rows)
-    #
-    #     else:
-    #         return jsonify({"error": "Failed to connect to database"}), 500
-    # except Error as e:
-    #     return jsonify({f"Error from MySQL: {e}"}), 500
-    #
-    # finally:
-    #     # 关闭数据库连接
-    #     if connection.is_connected():
-    #         cursor.close()
-    #         connection.close()
-    #
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            cursor.execute(sql)
+            res_rows = cursor.fetchall()
+
+            if res_rows is None:
+                return jsonify({"error": "Failed to execute SQL"}), 500
+
+            # 将数据转换为 JSON，确保中文不被转义
+            json_str = json.dumps({"result": res_rows}, ensure_ascii=False, default=str)
+            return Response(json_str, content_type="application/json; charset=utf-8")
+            # return jsonify(res_rows)
+
+        else:
+            return jsonify({"error": "Failed to connect to database"}), 500
+    except Error as e:
+        return jsonify({f"Error from MySQL: {e}"}), 500
+
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
 
 # 启动Flask应用
 if __name__ == '__main__':

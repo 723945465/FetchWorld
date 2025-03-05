@@ -1,7 +1,7 @@
 import requests
 def main(sql: str) -> dict:
     # 定义API的URL
-    url = "http://127.0.0.1:3000/execute"
+    url = "http://114.55.128.212:3000/execute"
 
     # 构造请求体
     payload = {
@@ -28,5 +28,5 @@ def main(sql: str) -> dict:
             "result": f"请求异常：{e}"
         }
 
-res = main("SELECT COUNT(*) FROM hismsg_info")
+res = main("SELECT * FROM hismsg_info limit 10")
 print(res)

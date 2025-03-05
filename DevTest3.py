@@ -3,7 +3,7 @@ import pymysql
 from datetime import datetime, timedelta
 import mysql.connector
 from mysql.connector import Error
-import LLMsTools
+import LLMsTests
 import os
 from stylecloud import gen_stylecloud
 import pandas as pd

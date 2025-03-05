@@ -1,7 +1,7 @@
 # -*- coding = utf-8 -*-
 # @Time: 2024/4/8 9:40
 # @Author: Chris
-# @File: LLMsTools.py
+# @File: LLMsTests.py
 # @Software: PyCharm
 
 from openai import OpenAI

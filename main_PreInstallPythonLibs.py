@@ -16,6 +16,7 @@ required_libraries = [
     'flask', #flask WebApi
     'numpy', 'pandas', 'matplotlib', 'seaborn',  # 数据处理和可视化
     'beautifulsoup4', 'requests', 'selenium',  # 网络数据获取和处理
+    'streamlit','xlsxwriter',
     # 'scipy', 'statsmodels', 'scikit-learn', 'xgboost', 'lightgbm',  # 数据分析和机器学习
     # 'tensorflow', 'keras', 'pytorch', 'fastai',  # 深度学习框架
     # 'jupyter', 'spyder', 'vscode',  # 开发环境
@@ -45,3 +46,4 @@ for i in required_libraries:
     print(f'============{i}已经安装============')
     print(f'==================================')
     print('\n')
+

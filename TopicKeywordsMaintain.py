@@ -99,6 +99,7 @@ def UpdateTopic(Topic_name, Topic_keywords):
             connection.close()
 
 if __name__ == '__main__':
+    UpdateTopic('机器人', TopicKeywordsLists.ai_robot_keywords)
     UpdateTopic('商业航天', TopicKeywordsLists.commercial_space_keywords)
     UpdateTopic('低空经济', TopicKeywordsLists.low_altitude_economy_keywords)
     UpdateTopic('通用价值点', TopicKeywordsLists.common_value_keywords)

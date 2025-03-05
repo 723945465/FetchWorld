@@ -3,7 +3,7 @@ import pymysql
 from datetime import datetime, timedelta
 import mysql.connector
 from mysql.connector import Error
-import LLMsTools
+import LLMsTests
 
 app = Flask(__name__)
 app.config['CHARSET'] = 'utf-8'  # 设置字符编码为 UTF-8
@@ -118,7 +118,7 @@ def timeline():
             connection.close()
     res_str = ""
     if len(content_s)>0:
-        res_str = LLMsTools.Kimi_refine_msg(content_s)
+        res_str = LLMsTests.Kimi_refine_msg(content_s)
     else:
         res_str = "请提交有效的hismsg_id"
 

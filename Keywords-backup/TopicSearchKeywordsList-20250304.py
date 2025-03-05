@@ -1,19 +1,5 @@
 # # 关键词列表,每个元素是一个字典,包含关键词和对应权重
 
-# Topic = ai机器人 in 头条资讯
-ai_robot_toutiaonews_keywords = [
-    {'keyword': '人形机器人', 'weight': 10},
-    {'keyword': '4足机器人', 'weight': 10},
-    {'keyword': '四足机器人', 'weight': 10},
-]
-
-# Topic = ai机器人 in 百度资讯
-ai_robot_baidunews_keywords = [
-    {'keyword': '人形机器人', 'weight': 10},
-    {'keyword': '4足机器人', 'weight': 10},
-    {'keyword': '四足机器人', 'weight': 10},
-]
-
 
 # Topic = 低空经济 in 头条资讯
 low_altitude_economy_toutiaonews_keywords = [

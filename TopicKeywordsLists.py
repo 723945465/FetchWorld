@@ -613,7 +613,6 @@ Biomanufacturing_keywords = [
     {'keyword': '大湾生物', 'weight': 10},
     {'keyword': '信华生物', 'weight': 10},
     {'keyword': '埃格林医药', 'weight': 10},
-    {'keyword': 'MEDI', 'weight': 10},
     {'keyword': '德容智药', 'weight': 10},
     {'keyword': '索智生物', 'weight': 10},
     {'keyword': '朗容生物', 'weight': 10},

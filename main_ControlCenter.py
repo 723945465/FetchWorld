@@ -71,12 +71,12 @@ def run_status():
     res_string += f" </br>latest msg from 微信： {res} </br>"
     res = CommonDbOpTools.query_latest_hismsg_by_infosource("公众号")
     res_string += f" </br>latest msg from 公号： {res} </br>"
+    res = CommonDbOpTools.query_latest_hismsg_by_infosource("头条资讯搜索")
+    res_string += f" </br>latest msg from 搜索： {res} </br>"
     res = CommonDbOpTools.query_latest_hismsg_by_infosource("微博")
     res_string += f" </br>latest msg from 微博： {res} </br>"
     res = CommonDbOpTools.query_latest_hismsg_by_infosource("雪球")
     res_string += f" </br>latest msg from 雪球： {res} </br>"
-    res = CommonDbOpTools.query_latest_hismsg_by_infosource("头条资讯搜索")
-    res_string += f" </br>latest msg from 搜索： {res} </br>"
 
     return res_string, 200
 

@@ -93,7 +93,37 @@ def query_latest_hismsg_by_infosource(infosource):
             cursor.close()
             connection.close()
 
+def insert_new_wxmsg(source, sender, sender_remark, type, content):
+    try:
+        # 连接到MySQL数据库
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password,
+                                             charset=charset)
+        if connection.is_connected():
+            cursor = connection.cursor()
+            query = """insert into wxmsg_info (
+            msg_source, 
+            msg_sender_name, 
+            msg_sender_remark,
+            msg_type,
+            msg_content) values (%s, %s, %s, %s, %s)"""
+            # 执行SQL语句
+            cursor.execute(query, (source, sender, sender_remark, type, content))
+            connection.commit()
 
+            return "success"
+        else:
+            return "######ERROR###### cannot connect to mysql"
+    except Error as e:
+        print(f"Error while connecting to MySQL: {e}")
+        print(f"SQL STRING: {query}")
+        return "######ERROR######" + f"Error while connecting to MySQL: {e}" + f"SQL STRING: {query}"
+    finally:
+        # 关闭数据库连接
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
 
 if __name__ == '__main__':
-    res = query_latest_hismsg_by_infosource("微信")
+    # res = query_latest_hismsg_by_infosource("微信")
+    res = insert_new_wxmsg("一笑","Chris","Chris-remark","文字","haha teset")
+    print(res)

@@ -6,6 +6,7 @@
 import os
 
 required_libraries = [
+    'wxauto',
     'jieba', #分词
     'stylecloud', 'wordcloud', #词云
     'imageio',

@@ -6,7 +6,8 @@
 import os
 
 required_libraries = [
-    'wxauto',
+    'wxauto', #微信消息提取
+    'pyreadline3', #MiniMax需要
     'jieba', #分词
     'stylecloud', 'wordcloud', #词云
     'imageio',

@@ -16,6 +16,7 @@ db_password= '19871127ldld'
 
 
 ServiceStatusDict = {
+    "main_AiAnalysis": ["2024-04-02 13:29:40","last message"],
     "WXPublicWebApi": ["2024-04-02 13:29:40","last message"],
     "WeiboXueqiuFetch": ["2024-04-02 13:29:40","last message"],
     "WechatPicAndFile": ["2024-04-02 13:29:40","last message"],

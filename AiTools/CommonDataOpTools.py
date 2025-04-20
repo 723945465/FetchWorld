@@ -123,7 +123,7 @@ def query_lasthour_hismsg():
                         DATE_FORMAT(NOW(), '%Y-%m-%d %H:00:00')
                     AND info_ready_for_analysis = 'yes' AND info_content is not null 
                     AND (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL)
-                    AND info_match_topic != '[]'
+                    AND LENGTH(info_match_topic) >= 2
                     ORDER BY create_time DESC;
                     """
 
@@ -178,7 +178,7 @@ def query_lastest_hismsg(num_of_msg):
                         WHERE info_ready_for_analysis = 'yes' 
                         AND info_content is not null 
                         AND (info_bad_for_analysis != 'bad' OR info_bad_for_analysis IS NULL) 
-                        AND info_match_topic != '[]'
+                        AND LENGTH(info_match_topic) >= 2
                         ORDER BY create_time DESC
                         LIMIT {num_of_msg}
                     ) AS latest_records;

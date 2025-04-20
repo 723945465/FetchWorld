@@ -6,6 +6,7 @@
 import os
 
 required_libraries = [
+    'schedule',#定时调度
     'wxauto', #微信消息提取
     'pyreadline3', #MiniMax需要
     'jieba', #分词

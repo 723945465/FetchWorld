@@ -32,7 +32,22 @@ def download_image(local_file_path, image_url):
         return(f"An unexpected error occurred: {e}")
 
 def parse_WXPublic_webpage(url, temp_ocr_image_filepath):
-    response = requests.get(url)
+    # 定义一个Chrome浏览器的User-Agent
+    chrome_user_agent = (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/115.0.0.0 Safari/537.36"
+    )
+
+    # 设置headers
+    headers = {
+        "User-Agent": chrome_user_agent,
+        "Accept-Language": "en-US,en;q=0.9",
+        # 你可以根据需要添加更多的headers
+    }
+
+
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # 提取网页中的所有文字
@@ -72,6 +87,7 @@ def parse_WXPublic_webpage(url, temp_ocr_image_filepath):
 
 
 if __name__ == "__main__":
-    webpage_url = 'https://mp.weixin.qq.com/s?__biz=Mzg5NjY2NjQ4Mg==&mid=2247484629&idx=1&sn=eaef8ed0556042288d6c33f5601a11c1&chksm=c07cdac8f70b53de4bb48bf3abdf6534354f0b0b7604910fdbee76b2cad9c6b1ce2b6e388d42&token=935428064&lang=zh_CN#rd'  # 你要解析的网页链接
+    # webpage_url = 'https://mp.weixin.qq.com/s?__biz=Mzg5NjY2NjQ4Mg==&mid=2247484629&idx=1&sn=eaef8ed0556042288d6c33f5601a11c1&chksm=c07cdac8f70b53de4bb48bf3abdf6534354f0b0b7604910fdbee76b2cad9c6b1ce2b6e388d42&token=935428064&lang=zh_CN#rd'  # 你要解析的网页链接
+    webpage_url = 'https://mp.weixin.qq.com/s?__biz=MzI5MzcwNTQ4NQ%3D%3D&mid=2247526390&idx=1&sn=245339c47c3dcdc87d9f68168ef11618'  # 你要解析的网页链接
     parsed_text = parse_WXPublic_webpage(webpage_url,'E:\\111.jpg')
     print(parsed_text)

@@ -123,7 +123,7 @@ if __name__ == '__main__':
     # for topic in TopicList:
     #     print(GetKeywordsByTopicsAndSearchPlatform(topic,SearchPlatform))
     UpdateTopic('大AI', '头条资讯', TopicSearchKeywordsList.ai_toutiaonews_keywords)
-    UpdateTopic('大AI', '百度资讯', TopicSearchKeywordsList.ai_baidunews_keywords)
+    # UpdateTopic('大AI', '百度资讯', TopicSearchKeywordsList.ai_baidunews_keywords)
     UpdateTopic('机器人', '头条资讯', TopicSearchKeywordsList.ai_robot_toutiaonews_keywords)
     UpdateTopic('机器人', '百度资讯', TopicSearchKeywordsList.ai_robot_baidunews_keywords)
     UpdateTopic('低空经济', '头条资讯', TopicSearchKeywordsList.low_altitude_economy_toutiaonews_keywords)

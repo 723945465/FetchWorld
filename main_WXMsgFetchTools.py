@@ -1,6 +1,7 @@
 import time
 import CommonDbOpTools
 from wxauto import WeChat
+import ControlCenterTools
 
 # 获取当前微信客户端
 wx = WeChat()
@@ -45,5 +46,5 @@ while True:
                     name_of_chatwindow,msg.sender,msg.sender_remark,"common",content)
                 print(f'【{name_of_chatwindow}】 {msg.sender_remark} sent: {content}')
 
-
+    ControlCenterTools.report_to_ControlCenter("main_WXMsgFetchTools", "running(waiting)...")
     time.sleep(wait)

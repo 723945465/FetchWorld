@@ -326,6 +326,8 @@ HotPoint_keywords = [
     {'keyword': '关税战', 'weight': 10},
     {'keyword': '关税大战', 'weight': 10},
     {'keyword': '敦煌网', 'weight': 10},
+    {'keyword': '贝森特', 'weight': 10},
+    {'keyword': 'Bessent', 'weight': 10},
     {'keyword': '马斯克', 'weight': 10},
     {'keyword': 'elon musk', 'weight': 10},
     {'keyword': '小米事故', 'weight': 10},

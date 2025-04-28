@@ -362,14 +362,13 @@ if __name__ == '__main__':
     # print(res)
     # res = query_yesterday_wxmsg()
     # print(res)
-    # res = query_today_wxmsg()
-    # print(res)
-    # print(len(res))
-    # print(len(str(res)))
-
-    res = query_today_hismsg('大AI')
-    print(json.dumps(res, indent=2, ensure_ascii=False))
+    res = query_today_wxmsg()
     print(res)
+    print(len(res))
+
+    # res = query_today_hismsg('大AI')
+    # print(json.dumps(res, indent=2, ensure_ascii=False))
+    # print(res)
     # print(len(res))
     # print(len(str(res)))
     # truncated_json = res[:2]

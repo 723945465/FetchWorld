@@ -2,17 +2,7 @@
 
 # Topic = AI
 ai_keywords = [
-    {"keyword": "AI伦理", "weight": 9},
-    {"keyword": "AI安全", "weight": 9},
-    {"keyword": "AI法规", "weight": 8},
-    {"keyword": "AI监管", "weight": 8},
-    {"keyword": "AI隐私", "weight": 8},
-    {"keyword": "Aleph Alpha", "weight": 7},
-    {"keyword": "Anthropic", "weight": 8},
-    {"keyword": "Cohere", "weight": 7},
-    {"keyword": "DeepMind", "weight": 10},
-    {"keyword": "H2O.ai", "weight": 7},
-    {"keyword": "Stability AI", "weight": 8},
+
     {"keyword": "光年之外", "weight": 7},
     {"keyword": "科大讯飞", "weight": 9},
     {"keyword": "Character.ai", "weight": 7},
@@ -158,6 +148,10 @@ ai_keywords = [
     {"keyword": "清扫机器人", "weight": 7},
     {"keyword": "赛特智能", "weight": 7},
     {'keyword': 'V2X', 'weight': 10},
+    {'keyword': 'L3', 'weight': 10},
+    {'keyword': 'L4', 'weight': 10},
+    {'keyword': '自动驾驶', 'weight': 10},
+    {'keyword': '智驾', 'weight': 10},
     {'keyword': '无人配送', 'weight': 10},
     {'keyword': '无人物流', 'weight': 10},
     {'keyword': 'Robobus', 'weight': 10},
@@ -290,17 +284,31 @@ ai_keywords = [
     {'keyword': 'AGI', 'weight': 10},
     {'keyword': 'ASI', 'weight': 10},
     {'keyword': 'AI Agent', 'weight': 10},
-    {'keyword': 'Genspark', 'weight': 10},
+    {"keyword": "AI伦理", "weight": 9},
+    {"keyword": "AI安全", "weight": 9},
+    {"keyword": "AI法规", "weight": 8},
+    {"keyword": "AI监管", "weight": 8},
+    {"keyword": "AI隐私", "weight": 8},
 
-    # AI公司产品人物
+    # AI人物
+    {'keyword': 'Ilya', 'weight': 10},
+    {'keyword': 'Sam Altman', 'weight': 10},
+    {'keyword': '山姆·奥特曼', 'weight': 10},
+
+    # AI公司产品
     {'keyword': 'openai', 'weight': 10},
     {'keyword': 'gpt5', 'weight': 10},
     {'keyword': 'gpt 5', 'weight': 10},
     {'keyword': 'gpt-5', 'weight': 10},
-    {'keyword': 'Ilya', 'weight': 10},
-    {'keyword': 'Sam Altman', 'weight': 10},
-    {'keyword': '山姆·奥特曼', 'weight': 10},
+    {"keyword": "Anthropic", "weight": 8},
+    {"keyword": "Cohere", "weight": 7},
+    {"keyword": "DeepMind", "weight": 10},
+    {"keyword": "H2O.ai", "weight": 7},
+    {"keyword": "Stability AI", "weight": 8},
+    {'keyword': 'Genspark', 'weight': 10},
     {'keyword': 'deepseek', 'weight': 10},
+    {'keyword': 'deepseek-r2', 'weight': 10},
+    {'keyword': 'qwen3', 'weight': 10},
 
     # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},

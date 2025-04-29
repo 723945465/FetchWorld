@@ -2,11 +2,6 @@
 
 # Topic = 大AI in 头条资讯
 ai_toutiaonews_keywords = [
-    # {"keyword": "Anthropic", "weight": 8},
-    # {"keyword": "Cohere", "weight": 7},
-    # {"keyword": "DeepMind", "weight": 10},
-    # {"keyword": "H2O.ai", "weight": 7},
-    # {"keyword": "Stability AI", "weight": 8},
     # {"keyword": "光年之外", "weight": 7},
     # {"keyword": "科大讯飞", "weight": 9},
     # {"keyword": "Character.ai", "weight": 7},
@@ -279,21 +274,35 @@ ai_toutiaonews_keywords = [
     {"keyword": "高擎机器人", "weight": 9},
 
 
-    # AI概念
+    # # AI概念
     # {'keyword': 'AGI', 'weight': 10},
     # {'keyword': 'ASI', 'weight': 10},
-    {'keyword': 'AI Agent', 'weight': 10},
-    {'keyword': 'Genspark', 'weight': 10},
+    # {'keyword': 'AI Agent', 'weight': 10},
+    # {"keyword": "AI伦理", "weight": 9},
+    # {"keyword": "AI安全", "weight": 9},
+    # {"keyword": "AI法规", "weight": 8},
+    # {"keyword": "AI监管", "weight": 8},
+    # {"keyword": "AI隐私", "weight": 8},
+    #
+    # # AI人物
+    # {'keyword': 'Ilya', 'weight': 10},
+    # {'keyword': 'Sam Altman', 'weight': 10},
+    # {'keyword': '山姆·奥特曼', 'weight': 10},
 
-    # AI公司产品人物
+    # AI公司产品
     {'keyword': 'openai', 'weight': 10},
     {'keyword': 'gpt5', 'weight': 10},
     {'keyword': 'gpt 5', 'weight': 10},
     {'keyword': 'gpt-5', 'weight': 10},
-    {'keyword': 'Ilya', 'weight': 10},
-    {'keyword': 'Sam Altman', 'weight': 10},
-    {'keyword': '山姆·奥特曼', 'weight': 10},
+    {"keyword": "Anthropic", "weight": 8},
+    # {"keyword": "Cohere", "weight": 7},
+    {"keyword": "DeepMind", "weight": 10},
+    # {"keyword": "H2O.ai", "weight": 7},
+    # {"keyword": "Stability AI", "weight": 8},
+    {'keyword': 'Genspark', 'weight': 10},
     {'keyword': 'deepseek', 'weight': 10},
+    {'keyword': 'deepseek-r2', 'weight': 10},
+    {'keyword': 'qwen3', 'weight': 10},
 
     # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},
@@ -326,22 +335,22 @@ ai_robot_baidunews_keywords = [
 
 # Topic = 低空经济 in 头条资讯
 low_altitude_economy_toutiaonews_keywords = [
-    {'keyword': '低空物流', 'weight': 10},
-    {'keyword': '低空经济', 'weight': 10},
-    {'keyword': 'eVTOL', 'weight': 10},
-    {'keyword': '低空医疗', 'weight': 10},
-    {'keyword': '低空出行', 'weight': 10},
-    {'keyword': '低空交通', 'weight': 8},
+    # {'keyword': '低空物流', 'weight': 10},
+    # {'keyword': '低空经济', 'weight': 10},
+    # {'keyword': 'eVTOL', 'weight': 10},
+    # {'keyword': '低空医疗', 'weight': 10},
+    # {'keyword': '低空出行', 'weight': 10},
+    # {'keyword': '低空交通', 'weight': 8},
 ]
 
 # Topic = 低空经济 in 百度资讯
 low_altitude_economy_baidunews_keywords = [
-    {'keyword': '低空物流', 'weight': 10},
-    {'keyword': '低空经济', 'weight': 10},
-    {'keyword': 'eVTOL', 'weight': 10},
-    {'keyword': '低空医疗', 'weight': 10},
-    {'keyword': '低空出行', 'weight': 10},
-    {'keyword': '低空交通', 'weight': 8},
+    # {'keyword': '低空物流', 'weight': 10},
+    # {'keyword': '低空经济', 'weight': 10},
+    # {'keyword': 'eVTOL', 'weight': 10},
+    # {'keyword': '低空医疗', 'weight': 10},
+    # {'keyword': '低空出行', 'weight': 10},
+    # {'keyword': '低空交通', 'weight': 8},
 ]
 
 # Topic = 商业航天 in 头条资讯

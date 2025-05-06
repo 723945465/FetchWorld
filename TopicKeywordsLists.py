@@ -2,7 +2,7 @@
 
 # Topic = AI
 ai_keywords = [
-
+    {"keyword": "外骨骼", "weight": 7},
     {"keyword": "光年之外", "weight": 7},
     {"keyword": "科大讯飞", "weight": 9},
     {"keyword": "Character.ai", "weight": 7},
@@ -309,6 +309,7 @@ ai_keywords = [
     {'keyword': 'deepseek', 'weight': 10},
     {'keyword': 'deepseek-r2', 'weight': 10},
     {'keyword': 'qwen3', 'weight': 10},
+    {'keyword': 'mimo', 'weight': 10},
 
     # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},

@@ -3,6 +3,7 @@
 # Topic = AI
 ai_keywords = [
     {"keyword": "外骨骼", "weight": 7},
+    {"keyword": "电子皮肤", "weight": 7},
     {"keyword": "光年之外", "weight": 7},
     {"keyword": "科大讯飞", "weight": 9},
     {"keyword": "Character.ai", "weight": 7},

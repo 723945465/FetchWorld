@@ -340,9 +340,11 @@ HotPoint_keywords = [
     {'keyword': '马斯克', 'weight': 10},
     {'keyword': 'elon musk', 'weight': 10},
     {'keyword': '小米事故', 'weight': 10},
-    # {'keyword': 'su7事故', 'weight': 10},
+    {'keyword': 'su7事故', 'weight': 10},
     {'keyword': '雷军', 'weight': 9},
-    # {'keyword': '雷总', 'weight': 9},
+    {'keyword': '雷总', 'weight': 9},
+    {'keyword': '印巴冲突', 'weight': 9},
+    {'keyword': '印巴战争', 'weight': 9},
 
 ]
 

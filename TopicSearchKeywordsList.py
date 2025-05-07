@@ -749,6 +749,8 @@ HotPoint_toutiaonews_keywords = [
     {'keyword': 'su7事故', 'weight': 10},
     {'keyword': '雷军', 'weight': 9},
     {'keyword': '雷总', 'weight': 9},
+    {'keyword': '印巴冲突', 'weight': 9},
+    {'keyword': '印巴战争', 'weight': 9},
 ]
 
 # Topic = 先锋热点 in 百度资讯

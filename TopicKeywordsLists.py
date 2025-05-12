@@ -65,6 +65,7 @@ ai_keywords = [
     {"keyword": "Spot", "weight": 9},
     {"keyword": "VLA Spirit", "weight": 7},
     {"keyword": "Well-Bot", "weight": 6},
+    {"keyword": "地瓜机器人", "weight": 8},
     {"keyword": "阿里机器人", "weight": 8},
     {"keyword": "艾欧智能", "weight": 6},
     {"keyword": "北京人形机器人创新中心", "weight": 8},

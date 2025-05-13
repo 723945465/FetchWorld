@@ -307,6 +307,7 @@ ai_toutiaonews_keywords = [
     {'keyword': 'deepseek-r2', 'weight': 10},
     {'keyword': 'qwen3', 'weight': 10},
     {'keyword': 'mimo', 'weight': 10},
+    {'keyword': 'healthbench', 'weight': 10},
 
     # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},

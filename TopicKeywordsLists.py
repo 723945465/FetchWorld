@@ -23,6 +23,7 @@ ai_keywords = [
     {"keyword": "混合专家系统", "weight": 7},
     {"keyword": "端到端", "weight": 8},
     {"keyword": "机器人大模型", "weight": 9},
+    {"keyword": "人形机器人", "weight": 9},
     {"keyword": "加速进化", "weight": 7},
     {"keyword": "九识智能", "weight": 7},
     {"keyword": "澜舟科技", "weight": 7},

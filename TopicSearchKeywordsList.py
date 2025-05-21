@@ -2,6 +2,8 @@
 
 # Topic = 大AI in 头条资讯
 ai_toutiaonews_keywords = [
+    {"keyword": "外骨骼", "weight": 7},
+    {"keyword": "电子皮肤", "weight": 7},
     # {"keyword": "光年之外", "weight": 7},
     # {"keyword": "科大讯飞", "weight": 9},
     # {"keyword": "Character.ai", "weight": 7},
@@ -61,6 +63,10 @@ ai_toutiaonews_keywords = [
     # {"keyword": "Spot", "weight": 9},
     {"keyword": "VLA Spirit", "weight": 7},
     # {"keyword": "Well-Bot", "weight": 6},
+    {"keyword": "地瓜机器人", "weight": 8},
+    {"keyword": "星海图", "weight": 8},
+    {"keyword": "自变量", "weight": 8},
+    {"keyword": "千寻", "weight": 8},
     {"keyword": "阿里机器人", "weight": 8},
     # {"keyword": "艾欧智能", "weight": 6},
     # {"keyword": "北京人形机器人创新中心", "weight": 8},
@@ -303,6 +309,8 @@ ai_toutiaonews_keywords = [
     {'keyword': 'deepseek', 'weight': 10},
     {'keyword': 'deepseek-r2', 'weight': 10},
     {'keyword': 'qwen3', 'weight': 10},
+    {'keyword': 'mimo', 'weight': 10},
+    {'keyword': 'healthbench', 'weight': 10},
 
     # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},
@@ -747,6 +755,8 @@ HotPoint_toutiaonews_keywords = [
     {'keyword': 'su7事故', 'weight': 10},
     {'keyword': '雷军', 'weight': 9},
     {'keyword': '雷总', 'weight': 9},
+    {'keyword': '印巴冲突', 'weight': 9},
+    {'keyword': '印巴战争', 'weight': 9},
 ]
 
 # Topic = 先锋热点 in 百度资讯

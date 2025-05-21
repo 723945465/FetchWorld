@@ -2,7 +2,8 @@
 
 # Topic = AI
 ai_keywords = [
-
+    {"keyword": "外骨骼", "weight": 7},
+    {"keyword": "电子皮肤", "weight": 7},
     {"keyword": "光年之外", "weight": 7},
     {"keyword": "科大讯飞", "weight": 9},
     {"keyword": "Character.ai", "weight": 7},
@@ -22,6 +23,7 @@ ai_keywords = [
     {"keyword": "混合专家系统", "weight": 7},
     {"keyword": "端到端", "weight": 8},
     {"keyword": "机器人大模型", "weight": 9},
+    {"keyword": "人形机器人", "weight": 9},
     {"keyword": "加速进化", "weight": 7},
     {"keyword": "九识智能", "weight": 7},
     {"keyword": "澜舟科技", "weight": 7},
@@ -64,6 +66,10 @@ ai_keywords = [
     {"keyword": "Spot", "weight": 9},
     {"keyword": "VLA Spirit", "weight": 7},
     {"keyword": "Well-Bot", "weight": 6},
+    {"keyword": "地瓜机器人", "weight": 8},
+    {"keyword": "星海图", "weight": 8},
+    {"keyword": "自变量", "weight": 8},
+    {"keyword": "千寻", "weight": 8},
     {"keyword": "阿里机器人", "weight": 8},
     {"keyword": "艾欧智能", "weight": 6},
     {"keyword": "北京人形机器人创新中心", "weight": 8},
@@ -309,6 +315,8 @@ ai_keywords = [
     {'keyword': 'deepseek', 'weight': 10},
     {'keyword': 'deepseek-r2', 'weight': 10},
     {'keyword': 'qwen3', 'weight': 10},
+    {'keyword': 'mimo', 'weight': 10},
+    {'keyword': 'healthbench', 'weight': 10},
 
     # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},
@@ -339,9 +347,11 @@ HotPoint_keywords = [
     {'keyword': '马斯克', 'weight': 10},
     {'keyword': 'elon musk', 'weight': 10},
     {'keyword': '小米事故', 'weight': 10},
-    # {'keyword': 'su7事故', 'weight': 10},
+    {'keyword': 'su7事故', 'weight': 10},
     {'keyword': '雷军', 'weight': 9},
-    # {'keyword': '雷总', 'weight': 9},
+    {'keyword': '雷总', 'weight': 9},
+    {'keyword': '印巴冲突', 'weight': 9},
+    {'keyword': '印巴战争', 'weight': 9},
 
 ]
 

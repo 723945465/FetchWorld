@@ -15,7 +15,7 @@ required_libraries = [
     'openai', #调用Kimi
     'emoji', #表情包字符
     'ftplib', #FTP
-    'mysql-connector-python', 'pymysql', #mysql
+    'mysql-connector-python==9.0.0', 'pymysql', #mysql
     'flask', #flask WebApi
     'numpy', 'pandas', 'matplotlib', 'seaborn',  # 数据处理和可视化
     'beautifulsoup4', 'requests', 'selenium',  # 网络数据获取和处理

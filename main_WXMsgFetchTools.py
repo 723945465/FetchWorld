@@ -9,6 +9,7 @@ wx = WeChat()
 listen_list = [
     '信息平权-产业',
     '一笑投研交流群',
+    '笑研AI应用',
     'Qwen3交流群'
 ]
 

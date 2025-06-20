@@ -25,7 +25,7 @@ charset='utf8mb4'
 
 if __name__ == '__main__':
 
-    query = f"""SELECT info_content FROM hismsg_info WHERE id > 8100"""
+    query = f"""SELECT info_content FROM hismsg_info WHERE id > 52000"""
     print(query)
     content_s = ""
     try:

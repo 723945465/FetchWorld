@@ -110,7 +110,7 @@ def query_timescope_hismsg(start_time, end_time,topic = ''):
                     'create_time', create_time,
                     'info_author_name', info_author_name,
                     'info_type', info_type,
-                    LEFT(info_content, 300) AS info_content, -- 最多取 2000 个字符
+                    LEFT(info_content, 300) AS info_content, -- 最多取 300 个字符
                     'info_internet_address', info_internet_address,
                     'info_match_topic', info_match_topic
                     FROM hismsg_info
@@ -130,7 +130,7 @@ def query_timescope_hismsg(start_time, end_time,topic = ''):
                      'create_time', create_time,
                      'info_author_name', info_author_name,
                      'info_type', info_type,
-                     LEFT(info_content, 300) AS info_content, -- 最多取 2000 个字符
+                     LEFT(info_content, 300) AS info_content, -- 最多取 300 个字符
                      'info_internet_address', info_internet_address,
                      'info_match_topic', info_match_topic
                      FROM hismsg_info
@@ -362,15 +362,21 @@ if __name__ == '__main__':
     # print(res)
     # res = query_yesterday_wxmsg()
     # print(res)
-    res = query_today_wxmsg()
-    print(res)
-    print(len(res))
-
-    # res = query_today_hismsg('大AI')
-    # print(json.dumps(res, indent=2, ensure_ascii=False))
+    # res = query_today_wxmsg()
     # print(res)
     # print(len(res))
-    # print(len(str(res)))
+
+    res = query_today_hismsg('大AI')
+    json_res = json.loads(res)
+    json_well = json.dumps(json_res, indent=2, ensure_ascii=False)
+    with open("E:\\example.txt", "w", encoding="utf-8") as file:
+        file.write(json_well)
+    print(res)
+    # print(len(res))
+
+
+
+
     # truncated_json = res[:2]
     #
     # print(json.dumps(truncated_json, indent=4, ensure_ascii=False))

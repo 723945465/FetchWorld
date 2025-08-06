@@ -170,9 +170,7 @@ ai_toutiaonews_keywords = [
     {"keyword": "宇通环卫", "weight": 7},
     {"keyword": "云创智行", "weight": 6},
     {"keyword": "智慧环卫", "weight": 7},
-    {"keyword": "本源量子", "weight": 7},
-    {"keyword": "光子计算", "weight": 6},
-    {"keyword": "量子计算", "weight": 9},
+
     {"keyword": "希姆计算", "weight": 6},
     {"keyword": "象帝先", "weight": 6},
     {"keyword": "1X Technologies", "weight": 6},
@@ -301,6 +299,7 @@ ai_toutiaonews_keywords = [
     {'keyword': 'gpt 5', 'weight': 10},
     {'keyword': 'gpt-5', 'weight': 10},
     {"keyword": "Anthropic", "weight": 8},
+    {'keyword': 'gemini', 'weight': 10},
     # {"keyword": "Cohere", "weight": 7},
     {"keyword": "DeepMind", "weight": 10},
     # {"keyword": "H2O.ai", "weight": 7},
@@ -328,6 +327,12 @@ ai_toutiaonews_keywords = [
     {'keyword': 'silicon photonic', 'weight': 10},
     # {'keyword': '光互联', 'weight': 10},
     # {'keyword': 'CPO', 'weight': 10},
+
+    # 量子计算
+    {"keyword": "本源量子", "weight": 7},
+    {"keyword": "光子计算", "weight": 6},
+    {"keyword": "量子计算", "weight": 9},
+    {"keyword": "曦智", "weight": 9},
 ]
 
 
@@ -743,36 +748,22 @@ Biomanufacturing_baidunews_keywords = [
 
 # Topic = 先锋热点 in 头条资讯
 HotPoint_toutiaonews_keywords = [
-    {'keyword': '对等关税', 'weight': 10},
-    {'keyword': '关税战', 'weight': 10},
-    {'keyword': '关税大战', 'weight': 10},
-    {'keyword': '敦煌网', 'weight': 10},
     {'keyword': '贝森特', 'weight': 10},
     {'keyword': 'Bessent', 'weight': 10},
     {'keyword': '马斯克', 'weight': 10},
     {'keyword': 'elon musk', 'weight': 10},
-    {'keyword': '小米事故', 'weight': 10},
-    {'keyword': 'su7事故', 'weight': 10},
     {'keyword': '雷军', 'weight': 9},
     {'keyword': '雷总', 'weight': 9},
-    {'keyword': '印巴冲突', 'weight': 9},
-    {'keyword': '印巴战争', 'weight': 9},
 ]
 
 # Topic = 先锋热点 in 百度资讯
 HotPoint_baidunews_keywords = [
-    {'keyword': '对等关税', 'weight': 10},
-    {'keyword': '关税战', 'weight': 10},
-    {'keyword': '关税大战', 'weight': 10},
-    {'keyword': '敦煌网', 'weight': 10},
     {'keyword': '贝森特', 'weight': 10},
     {'keyword': 'Bessent', 'weight': 10},
     {'keyword': '马斯克', 'weight': 10},
     {'keyword': 'elon musk', 'weight': 10},
-    {'keyword': '小米事故', 'weight': 10},
-    # {'keyword': 'su7事故', 'weight': 10},
     {'keyword': '雷军', 'weight': 9},
-    # {'keyword': '雷总', 'weight': 9},
+    {'keyword': '雷总', 'weight': 9},
 ]
 
 # Topic = AI算力 in 头条资讯

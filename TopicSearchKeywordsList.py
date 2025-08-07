@@ -344,6 +344,12 @@ HPC_toutiaonews_keywords= [
     {"keyword": "长存", "weight": 9},
     {"keyword": "华虹", "weight": 9},
     {"keyword": "凯美特气", "weight": 9},
+    {"keyword": "新凯来", "weight": 9},
+    {"keyword": "光刻机", "weight": 9},
+    {"keyword": "gkj", "weight": 9},
+    {"keyword": "7nm", "weight": 9},
+    {"keyword": "5nm", "weight": 9},
+    {"keyword": "3nm", "weight": 9},
 
 ]
 

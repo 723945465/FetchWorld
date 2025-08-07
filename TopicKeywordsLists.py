@@ -242,6 +242,7 @@ ai_keywords = [
     {'keyword': 'ASI', 'weight': 10},
     {'keyword': 'AI Agent', 'weight': 10},
     {'keyword': 'Physic AI', 'weight': 10},
+    {'keyword': '物理AI', 'weight': 10},
     {'keyword': 'Deep Research', 'weight': 10},
     {"keyword": "MoE", "weight": 7},
     {"keyword": "混合专家系统", "weight": 7},

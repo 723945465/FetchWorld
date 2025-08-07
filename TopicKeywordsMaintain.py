@@ -106,6 +106,6 @@ if __name__ == '__main__':
     UpdateTopic('先锋热点', TopicKeywordsLists.HotPoint_keywords)
     UpdateTopic('生物制造', TopicKeywordsLists.Biomanufacturing_keywords)
     UpdateTopic('激光雷达', TopicKeywordsLists.LidarADAS_keywords)
-    # UpdateTopic('AI算力', TopicKeywordsLists.AIHPC_keywords)  # 已停用
+    UpdateTopic('算力', TopicKeywordsLists.HPC_keywords)
     UpdateTopic('量化', TopicKeywordsLists.quantitative_trading_keywords)
     UpdateTopic('大AI', TopicKeywordsLists.ai_keywords)

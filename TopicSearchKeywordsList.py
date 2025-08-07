@@ -201,10 +201,7 @@ ai_toutiaonews_keywords = [
 
 
 
-
-
     {"keyword": "ViLLA", "weight": 7},
-
     {"keyword": "3D-VLA", "weight": 7},
     # {"keyword": "Atlas", "weight": 9},
     {"keyword": "Cyber One", "weight": 7},
@@ -225,12 +222,9 @@ ai_toutiaonews_keywords = [
     # {"keyword": "Well-Bot", "weight": 6},
 
 
-
     {"keyword": "亿铸科技", "weight": 6},
     {"keyword": "智驾芯片", "weight": 8},
     {"keyword": "中科驭数", "weight": 7},
-
-
 
 
     # # AI大模型概念
@@ -245,8 +239,6 @@ ai_toutiaonews_keywords = [
     {"keyword": "世界模型", "weight": 7},
     {"keyword": "VLA", "weight": 7},
     {"keyword": "端到端", "weight": 8},
-
-
 
     # AI人物
     # {'keyword': 'Ilya', 'weight': 10},
@@ -284,8 +276,11 @@ ai_toutiaonews_keywords = [
     {"keyword": "月之暗面", "weight": 6},
     {"keyword": "智谱", "weight": 7},
 
+]
 
-    # 算力
+# Topic = 算力 in toutiao
+HPC_toutiaonews_keywords= [
+    # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},
     {'keyword': '超节点', 'weight': 10},
     {'keyword': 'AI芯片', 'weight': 10},
@@ -328,7 +323,7 @@ ai_toutiaonews_keywords = [
     {"keyword": "芯原微电子", "weight": 7},
 
     # 算通一体化
-    # {'keyword': 'NVLink', 'weight': 10},
+    {'keyword': 'NVLink', 'weight': 10},
     {'keyword': '硅光', 'weight': 10},
     {'keyword': 'silicon photonic', 'weight': 10},
     {'keyword': '光互联', 'weight': 10},
@@ -340,9 +335,16 @@ ai_toutiaonews_keywords = [
     {"keyword": "光子计算", "weight": 6},
     {"keyword": "量子计算", "weight": 9},
     {"keyword": "曦智", "weight": 9},
+
+    # 先进半导体
+    {"keyword": "中芯", "weight": 7},
+    {"keyword": "长鑫", "weight": 6},
+    {"keyword": "长江存储", "weight": 9},
+    {"keyword": "长存", "weight": 9},
+    {"keyword": "华虹", "weight": 9},
+    {"keyword": "凯美特气", "weight": 9},
+
 ]
-
-
 
 # Topic = ai机器人 in 头条资讯
 ai_robot_toutiaonews_keywords = [

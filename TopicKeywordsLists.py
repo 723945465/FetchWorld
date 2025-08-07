@@ -290,7 +290,12 @@ ai_keywords = [
     {"keyword": "月之暗面", "weight": 6},
     {"keyword": "智谱", "weight": 7},
 
-    # 算力
+
+]
+
+# Topic = 算力
+HPC_keywords = [
+    # 算力芯片
     {'keyword': '算力芯片', 'weight': 10},
     {'keyword': '超节点', 'weight': 10},
     {'keyword': 'AI芯片', 'weight': 10},
@@ -347,7 +352,12 @@ ai_keywords = [
     {"keyword": "曦智", "weight": 9},
 
     # 先进半导体
-
+    {"keyword": "中芯", "weight": 7},
+    {"keyword": "长鑫", "weight": 6},
+    {"keyword": "长江存储", "weight": 9},
+    {"keyword": "长存", "weight": 9},
+    {"keyword": "华虹", "weight": 9},
+    {"keyword": "凯美特气", "weight": 9},
 
 ]
 
@@ -366,9 +376,7 @@ HotPoint_keywords = [
 ai_robot_keywords = [
 ]
 
-# Topic = AI算力
-AIHPC_keywords = [
-]
+
 # Topic = 通用价值点
 common_value_keywords = [
     {'keyword': '加群', 'weight': 10},

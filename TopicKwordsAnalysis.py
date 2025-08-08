@@ -10,11 +10,14 @@ db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
 db_user= 'chris'
 db_password= '19871127ldld'
+conn_timeout = 20,  # 设置连接超时
+# pool_size = 5,  # 使用连接池
+# pool_reset_session = True
 
 def construct_topic_keywords(topic):
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
 
@@ -90,7 +93,7 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
     info_rows = []
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             if is_Refresh_mode == True:
@@ -184,7 +187,7 @@ def analyze_recent_articles(Topic_name, is_Refresh_mode = False):
 
         try:
             # 连接到MySQL数据库
-            connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password)
+            connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, connect_timeout = conn_timeout)
             if connection.is_connected():
                 cursor = connection.cursor()
                 sql = ("UPDATE hismsg_info SET info_analysis_status = %s, info_match_topic = %s  WHERE id =  %s")

@@ -13,11 +13,12 @@ db_databasename= 'fetchtheworld'
 db_user= 'chris'
 db_password= '19871127ldld'
 charset='utf8mb4'
+conn_timeout = 20,  # 设置连接超时
 
 def getTopicList():
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             # 查询数据库中是否存在相同的title或link
@@ -52,7 +53,7 @@ def keywords_list_to_string(keywordsList):
 def query_info_dwh_reletive_file_path(hismsg_id):
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             # 查询数据库中是否存在相同的title或link
@@ -78,7 +79,7 @@ def commit_wx_chat_pic_tosend(hismsg_id, temp_info_author_name, topic_matched, k
     info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -121,7 +122,7 @@ def commit_wb_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matc
     info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -164,7 +165,7 @@ def commit_xq_tosend(hismsg_id, temp_info_author_name, temp_info_url, topic_matc
     info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -206,7 +207,7 @@ def commit_wxpublic_tosend(hismsg_id, temp_info_author_name, temp_info_title, te
     info_dwh_reletive_file_path = query_info_dwh_reletive_file_path(hismsg_id)
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -240,7 +241,7 @@ def commit_toutiaobaidu_search_tosend(hismsg_id, temp_info_time_author, temp_inf
 
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             # 插入文字提示
@@ -275,7 +276,7 @@ def commit_hismsg_tosend(LengthThreshold):
     info_rows = []
     try:
         # 连接到MySQL数据库
-        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset)
+        connection = mysql.connector.connect(host=db_host, database=db_databasename, user=db_user, password=db_password, charset = charset, connect_timeout = conn_timeout)
         if connection.is_connected():
             cursor = connection.cursor()
             query = f"""SELECT * FROM hismsg_info 

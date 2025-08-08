@@ -18,7 +18,7 @@ db_databasename= 'fetchtheworld'
 db_user= 'chris'
 db_password= '19871127ldld'
 charset='utf8mb4'
-conn_timeout = 20,  # 设置连接超时
+conn_timeout = 20  # 设置连接超时
 
 def CommitSearchInfoToHismsg():
     try:

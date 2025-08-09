@@ -10,7 +10,7 @@ db_host= '114.55.128.212'
 db_databasename= 'fetchtheworld'
 db_user= 'chris'
 db_password= '19871127ldld'
-conn_timeout = 20  # 设置连接超时
+conn_timeout = 200  # 设置连接超时
 # pool_size = 5  # 使用连接池
 # pool_reset_session = True
 

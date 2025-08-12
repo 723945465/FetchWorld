@@ -281,8 +281,17 @@ ai_toutiaonews_keywords = [
 
 # Topic = 算力 in toutiao
 HPC_toutiaonews_keywords= [
-    # 算力芯片概念
+    # 算力芯片
+    # {'keyword': '算力', 'weight': 10},
+    # {'keyword': '计算卡', 'weight': 10},
     # {'keyword': '算力芯片', 'weight': 10},
+    # {'keyword': '算力卡', 'weight': 10},
+    # {'keyword': '算力服务器', 'weight': 10},
+    # {'keyword': 'GPU', 'weight': 10},
+    # {'keyword': 'GPGPU', 'weight': 10},
+    # {'keyword': 'bis', 'weight': 10},
+    # {'keyword': 'HBM', 'weight': 10},
+    # {'keyword': 'vDRAM', 'weight': 10},
     {'keyword': '超节点', 'weight': 10},
     {'keyword': '存算一体', 'weight': 10},
     # {'keyword': 'AI芯片', 'weight': 10},
@@ -308,7 +317,9 @@ HPC_toutiaonews_keywords= [
     {"keyword": "寒武纪", "weight": 7},
     {"keyword": "后摩", "weight": 7},
     {"keyword": "晶晨", "weight": 7},
+    {"keyword": "东芯", "weight": 7},
     {"keyword": "砺算", "weight": 7},
+    {"keyword": "7G100", "weight": 7},
     {"keyword": "摩尔", "weight": 7},
     {"keyword": "沐曦", "weight": 7},
     {"keyword": "景嘉微", "weight": 7},
@@ -329,8 +340,7 @@ HPC_toutiaonews_keywords= [
     {"keyword": "鲲云", "weight": 7},
     {"keyword": "杰发", "weight": 7},
 
-
-    #通用CPU
+    # 通用CPU
     {"keyword": "龙芯", "weight": 7},
     {"keyword": "华为鲲鹏", "weight": 7},
     {"keyword": "兆芯", "weight": 7},
@@ -347,13 +357,18 @@ HPC_toutiaonews_keywords= [
     {"keyword": "芯原微", "weight": 7},
 
     # 先进半导体（晶圆、封装、测试）
-    {"keyword": "光刻机", "weight": 9},
-    {"keyword": "gkj", "weight": 9},
-    {"keyword": "7nm", "weight": 9},
-    {"keyword": "5nm", "weight": 9},
-    {"keyword": "3nm", "weight": 9},
+    # {"keyword": "光刻机", "weight": 9},
+    {"keyword": "国产光刻机", "weight": 9},
+    # {"keyword": "gkj", "weight": 9},
+    # {"keyword": "7nm", "weight": 9},
+    # {"keyword": "5nm", "weight": 9},
+    # {"keyword": "3nm", "weight": 9},
+    # {"keyword": "n+2", "weight": 9},
+    # {"keyword": "n+3", "weight": 9},
     {"keyword": "中芯", "weight": 7},
-    {"keyword": "SMIC", "weight": 7},
+    # {"keyword": "SMIC", "weight": 7},
+    {"keyword": "台积电", "weight": 7},
+    # {"keyword": "tsmc", "weight": 7},
     {"keyword": "长鑫", "weight": 6},
     {"keyword": "长江存储", "weight": 9},
     {"keyword": "长存", "weight": 9},
@@ -387,22 +402,21 @@ HPC_toutiaonews_keywords= [
     {"keyword": "华润微", "weight": 7},
     {"keyword": "太极实业", "weight": 7},
 
-
     # HPC主机
     {"keyword": "曙光", "weight": 7},
-    {"keyword": "浪潮", "weight": 7},
+    {"keyword": "浪潮信息", "weight": 7},
     {"keyword": "超聚变", "weight": 7},
     {"keyword": "浪潮", "weight": 7},
     {"keyword": "宝德", "weight": 7},
     {"keyword": "联想开天", "weight": 7},
 
     # 算力通信
-    {'keyword': 'NVLink', 'weight': 10},
-    {'keyword': '硅光', 'weight': 10},
-    {'keyword': 'silicon photonic', 'weight': 10},
-    {'keyword': '光互联', 'weight': 10},
-    {'keyword': 'ocs', 'weight': 10},
-    {'keyword': 'CPO', 'weight': 10},
+    # {'keyword': 'NVLink', 'weight': 10},
+    # {'keyword': '硅光', 'weight': 10},
+    # {'keyword': 'silicon photonic', 'weight': 10},
+    # {'keyword': '光互联', 'weight': 10},
+    # {'keyword': 'ocs', 'weight': 10},
+    # {'keyword': 'CPO', 'weight': 10},
     {"keyword": "新易盛", "weight": 7},
     {"keyword": "中际旭创", "weight": 7},
     {"keyword": "天孚", "weight": 7},
@@ -417,10 +431,9 @@ HPC_toutiaonews_keywords= [
     {"keyword": "飞荣达", "weight": 7},
     {"keyword": "高澜股份", "weight": 7},
 
-
     # 量子计算
-    {"keyword": "光子计算", "weight": 6},
-    {"keyword": "量子计算", "weight": 9},
+    # {"keyword": "光子计算", "weight": 6},
+    # {"keyword": "量子计算", "weight": 9},
     {"keyword": "曦智", "weight": 9},
     {"keyword": "本源量子", "weight": 7},
 
